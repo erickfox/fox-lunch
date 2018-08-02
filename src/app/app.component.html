@@ -1,5 +1,5 @@
-<div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+<div #navBar id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">
     <i class="material-icons mi-dark">close</i>
   </a>
   <a routerLink="home" class="font-roboto font-gray font-weight-bold">Inicio</a>
@@ -14,7 +14,7 @@
     <span class="navbar-text text-white font-roboto font-weight-bold letspc-5">
       Inicio
     </span>
-    <button onclick="openNav()" class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+    <button (click)="openNav()" class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon">
         <img height="100%" src="../assets/img/menu_icon.jpg" />
       </span>
