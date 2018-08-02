@@ -1,24 +1,24 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div class="login text-center">
-  <form class="form-signin shadow rounded">
-    <h1 class="h3 mb-3 bg_orange">FOX LUNCH</h1>
-    <div class="p-3">
-      <div class="form-group m-0 has-feedback has-feedback-left">
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="true">
-        <i class="form-control-feedback material-icons mi-gray">person</i>
-      </div>
-      <div class="form-group m-0 has-feedback has-feedback-left">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="true">
-        <i class="form-control-feedback material-icons mi-gray">vpn_key</i>
-      </div>
-      <button class="my-3 btn btn-md btn-block bg_gray text-white font-roboto font-weight-bold letspc-5" type="submit">ENTRAR</button>
-      <div class="form-group mt-4 mb-0">
-        <div class="checkbox">
-          <button class="font-orange btn btn-sm btn-link" type="submit">¿Olvidé mi contraseña?</button>
-        </div>
-      </div>
-    </div>
-  </form>
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+    <i class="material-icons mi-dark">close</i>
+  </a>
+  <a href="#" class="font-roboto font-gray font-weight-bold">Inicio</a>
+  <a href="#" class="font-roboto font-gray font-weight-bold">Menú</a>
+  <a href="#" class="font-roboto font-gray font-weight-bold">En venta</a>
+  <a href="#" class="font-roboto font-gray font-weight-bold">Perfil</a>
+</div>
+
+<div class="container">
+  <!-- As a heading -->
+  <nav class="navbar py-1 fixed-top bg_orange">
+    <span class="navbar-text text-white font-roboto font-weight-bold letspc-5">
+      Inicio
+    </span>
+    <button onclick="openNav()" class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon">
+        <img height="100%" src="../assets/img/menu_icon.jpg" />
+      </span>
+    </button>
+  </nav>
+  <router-outlet></router-outlet>
 </div>
