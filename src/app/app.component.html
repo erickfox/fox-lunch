@@ -2,16 +2,16 @@
   <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">
     <i class="material-icons mi-dark">close</i>
   </a>
-  <a routerLink="home" class="font-roboto font-gray font-weight-bold">Inicio</a>
-  <a routerLink="menu" class="font-roboto font-gray font-weight-bold">Menú</a>
-  <a routerLink="ticket-sale" class="font-roboto font-gray font-weight-bold">En venta</a>
-  <a routerLink="profile" class="font-roboto font-gray font-weight-bold">Perfil</a>
+  <a (click)="closeNav()" routerLink="home" class="font-roboto font-gray font-weight-bold">Inicio</a>
+  <a (click)="closeNav()" routerLink="menu" class="font-roboto font-gray font-weight-bold">Menú</a>
+  <a (click)="closeNav()" routerLink="ticket-sale" class="font-roboto font-gray font-weight-bold">En venta</a>
+  <a (click)="closeNav()" routerLink="profile" class="font-roboto font-gray font-weight-bold">Perfil</a>
 </div>
 
 <div class="container">
   <!-- As a heading -->
   <nav class="navbar py-1 fixed-top bg_orange">
-    <span class="navbar-text text-white font-roboto font-weight-bold letspc-5">
+    <span routerLink="home" class="navbar-text text-white font-roboto font-weight-bold letspc-5">
       Inicio
     </span>
     <button (click)="openNav()" class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
