@@ -5,16 +5,16 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  @ViewChild('navBar') el:ElementRef;
+  @ViewChild('navBar') navBar:ElementRef;
   constructor() {
     
   }
 
   openNav() {
-    this.el.nativeElement.style.width = '280px';
+    this.navBar.nativeElement.style.width = '280px';
   }
 
   closeNav() {
-    this.el.nativeElement.style.width = '0';
+    this.navBar.nativeElement.style.width = '0';
   }
 }
