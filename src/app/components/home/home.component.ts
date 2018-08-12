@@ -13,12 +13,17 @@ export class HomeComponent implements OnInit {
   reservedMenuView: boolean = false
   availableTickets: number = 0
   exchange = null
+  countDownTimer = this.getCurrentDate() + ' 09:00:00'
+  hours = 0
+  minutes = 0
+  seconds = 0
 
   constructor() {
 
   }
 
   ngOnInit() {
+    this.startTimer()
     this.exchangeUser()
     this.getAvailableTickets()
   }
@@ -47,7 +52,8 @@ export class HomeComponent implements OnInit {
       }
     }).catch(error => {
       const currentTime = new Date().getHours()
-      this.toReserveView = currentTime <= 9 ? true : false
+      // this.toReserveView = currentTime <= 9 ? true : false
+      this.toReserveView = true
       this.salesView = true
     })
   }
@@ -80,5 +86,30 @@ export class HomeComponent implements OnInit {
         console.log('Error al vender el ticket')
       })
     }
+  }
+
+
+  getCurrentDate() {
+    const currentDate = new Date()
+    const parseDate = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate()
+
+    return parseDate
+  }
+
+  startTimer() {
+    const limitDateTime = new Date(this.countDownTimer).getTime()
+
+    setInterval(() => {
+      const currentDateTime = new Date().getTime()
+      const distance = limitDateTime - currentDateTime
+
+      this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      if (distance < 0) {
+        this.toReserveView = false
+      }
+    }, 1000)
   }
 }
