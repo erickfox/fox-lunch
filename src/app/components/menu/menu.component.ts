@@ -1,18 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Menu } from '../../services'
+import { parse } from 'url';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
 })
-export class MenuComponent {
 
+export class MenuComponent implements OnInit {
+  
   constructor() {
-    this.getByDate()
+    
   }
 
-  async getByDate() {
-    const response = await Menu.getByDate('2018-08-12')
-    console.log(response)
+  ngOnInit() {
+    this.getByDate(this.getCurrentDate())
+  }
+
+  async getByDate(date: string) {
+    const response = await Menu.getByDate(date)
+  }
+
+  getCurrentDate() {
+    const currentDate = new Date()
+    const parseDate = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate()
+
+    return parseDate
   }
 }
