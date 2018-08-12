@@ -6,23 +6,21 @@
 
 <!-- ROW POR MENU-->
 <div class="row">
-  <div class="col-12">
-    <ul class="list-group mb-3">
+  <div class="col-12" *ngFor="let item of availableTickets">
+    <ul class="list-group mb-3" *ngIf="item.status === 3">
       <li class="list-group-item border-bottom-0">
-        <h6 class="pb-0 pt-1 font-roboto font-weight-bold letspc-5 text-uppercase font-orange">Menú 1</h6>
-        <p class="m-0">Dueño: Josué Ayala</p>
+        <h6 class="pb-0 pt-1 font-roboto font-weight-bold letspc-5 text-uppercase font-orange">{{ item.Menu.name }} - {{ item.Menu.description }}</h6>
+        <p class="m-0">Dueño: {{ item.User.name }}</p>
       </li>
       <li class="list-group-item border-top-0 pt-0">
         <button class="btn btn-md btn-block bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase mt-2 mb-0" data-toggle="modal"
           data-target="#exampleModal">lo quiero</button>
       </li>
     </ul>
-  </div>
-  <div class="col-12">
-    <ul class="list-group mb-3">
+    <ul class="list-group mb-3" *ngIf="item.status === 4">
       <li class="list-group-item border-bottom-0">
-        <h6 class="pb-0 pt-1 font-roboto font-weight-bold letspc-5 text-uppercase font-orange font_disabled">Menú 4</h6>
-        <p class="m-0 font_disabled">Dueño: Erick Pac</p>
+        <h6 class="pb-0 pt-1 font-roboto font-weight-bold letspc-5 text-uppercase font-orange font_disabled">{{ item.Menu.name }} - {{ item.Menu.description }}</h6>
+        <p class="m-0 font_disabled">Dueño: {{ item.User.name }}</p>
       </li>
       <li class="list-group-item border-top-0 pt-0 text-right">
         <span class="badge p-2 font-weight-bold bg_orange text-white text-uppercase">Vendido</span>

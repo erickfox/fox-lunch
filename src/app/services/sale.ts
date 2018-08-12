@@ -1,7 +1,6 @@
 import axios from 'axios'
 
 export class Sale {
-
   static sell(request: any): Promise<any> {
     const req = axios.put('/sale', request)
     return req
@@ -11,5 +10,4 @@ export class Sale {
     const req = axios.get('/sale/available')
     return req
   }
-  
 }

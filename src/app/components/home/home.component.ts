@@ -6,6 +6,7 @@ import { Exchange } from '../../services'
   selector: 'app-home',
   templateUrl: './home.component.html',
 })
+
 export class HomeComponent implements OnInit {
   navigationSubscription
   toReserveView: boolean = false
@@ -15,8 +16,8 @@ export class HomeComponent implements OnInit {
   exchange = null
 
   constructor() {
-    
-  } 
+
+  }
 
   ngOnInit() {
     this.exchangeUser()
@@ -25,7 +26,9 @@ export class HomeComponent implements OnInit {
 
   getAvailableTickets() {
     Sale.available().then(data => {
-      this.availableTickets = data.data.length
+      const sortData = data.data.filter(item => item.status === 3)
+
+      this.availableTickets = sortData.length
     }).catch(error => {
       console.log('Error al obtener los tickets disponibles')
     })
@@ -55,10 +58,8 @@ export class HomeComponent implements OnInit {
       }
 
       Exchange.cancel(params).then(data => {
-        if (data) {
-          console.log('Canje cancelado')
-          window.location.reload()
-        }
+        console.log('Canje cancelado')
+        window.location.reload()
       }).catch(error => {
         console.log('Error al cancelar canje')
       })
@@ -72,10 +73,8 @@ export class HomeComponent implements OnInit {
       }
 
       Sale.sell(params).then(data => {
-        if (data) {
-          console.log('Ticket vendido')
-          window.location.reload()
-        }
+        console.log('Ticket vendido')
+        window.location.reload()
       }).catch(error => {
         console.log('Error al vender el ticket')
       })
