@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { Sale } from '../../services'
 import { Exchange } from '../../services'
 
@@ -8,7 +8,6 @@ import { Exchange } from '../../services'
 })
 
 export class HomeComponent implements OnInit {
-  navigationSubscription
   toReserveView: boolean = false
   salesView: boolean = false
   reservedMenuView: boolean = false
@@ -35,6 +34,7 @@ export class HomeComponent implements OnInit {
   }
 
   exchangeUser() {
+    // TODO: cambiar 1 por el id original del objeto de usuario
     Exchange.exchangeUser(1).then(data => {
       this.reservedMenuView = true
       this.exchange = {
@@ -46,7 +46,8 @@ export class HomeComponent implements OnInit {
         }
       }
     }).catch(error => {
-      this.toReserveView = true
+      const currentTime = new Date().getHours()
+      this.toReserveView = currentTime <= 9 ? true : false
       this.salesView = true
     })
   }
