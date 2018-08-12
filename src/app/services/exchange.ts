@@ -1,15 +1,18 @@
 import axios from 'axios'
 
 export class Exchange {
-
-  static async exchange(request: any): Promise<any> {
-    const req = await axios.post('/exchange', request)
+  static exchange(request: any): Promise<any> {
+    const req = axios.post('/exchange', request)
     return req
   }
 
-  static async cancel(request: any): Promise<any> {
-    const req = await axios.post('/exchange/cancel', request)
+  static cancel(request: any): Promise<any> {
+    const req = axios.put('/exchange/cancel', request)
     return req
   }
 
+  static exchangeUser(id: number): Promise<any> {
+    const request = axios.get('/exchange/user/' + id)
+    return request
+  }
 }

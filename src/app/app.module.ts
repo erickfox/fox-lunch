@@ -59,8 +59,9 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes, {onSameUrlNavigation: 'reload'})
   ],
+  exports: [RouterModule],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Menu } from '../../services'
-import { parse } from 'url';
 
 @Component({
   selector: 'app-menu',
