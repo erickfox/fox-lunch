@@ -59,7 +59,6 @@ export class HomeComponent implements OnInit {
     }).catch(error => {
       const currentTime = new Date().getHours()
       this.toReserveView = currentTime < 9 ? true : false
-      this.toReserveView = true
       this.salesView = true
     })
   }
