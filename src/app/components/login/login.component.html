@@ -1,16 +1,18 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="login text-center">
-  <form class="form-signin shadow rounded">
+  <form class="form-signin shadow rounded" (ngSubmit)="f.form.valid && login()" #f="ngForm">
     <h1 class="h3 mb-3 bg_orange">FOX LUNCH</h1>
     <div class="p-3">
       <div class="form-group m-0 has-feedback has-feedback-left">
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="true">
+        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="true" [(ngModel)]="model.email"
+          #email="ngModel">
         <i class="form-control-feedback material-icons mi-gray">person</i>
       </div>
       <div class="form-group m-0 has-feedback has-feedback-left">
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="true">
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="true" [(ngModel)]="model.password"
+          #password="ngModel">
         <i class="form-control-feedback material-icons mi-gray">vpn_key</i>
       </div>
       <button class="my-3 btn btn-md btn-block bg_gray text-white font-roboto font-weight-bold letspc-5" type="submit">ENTRAR</button>
