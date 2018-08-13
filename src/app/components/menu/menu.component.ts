@@ -10,20 +10,19 @@ import { Exchange } from '../../services'
 
 export class MenuComponent implements OnInit {
   menuList = []
+  currentDate = new Date()
 
   constructor(private router: Router) {
 
   }
 
   ngOnInit() {
-    this.getByDate(this.getCurrentDate())
+    this.getByDate(this.parseDate(this.currentDate))
   }
 
-  getCurrentDate() {
-    const currentDate = new Date()
-    const parseDate = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate()
-
-    return parseDate
+  parseDate(date) {
+    const typeDate = new Date(date)
+    return typeDate.getFullYear() + '-' + (typeDate.getMonth() + 1) + '-' + typeDate.getDate()
   }
 
   getByDate(date: string) {
@@ -32,6 +31,7 @@ export class MenuComponent implements OnInit {
         let menuItem: object = {}
         menuItem = {
           id: element.id,
+          date: element.date,
           name: element.name,
           description: element.description,
           garnish: element.garnish.split(',')
@@ -48,7 +48,8 @@ export class MenuComponent implements OnInit {
     // TODO: cambiar 1 por el id original del objeto de usuario
     const params = {
       user_id: 1,
-	    menu_id: menu.id
+      menu_id: menu.id,
+      date: menu.date
     }
 
     Exchange.exchange(params).then(data => {

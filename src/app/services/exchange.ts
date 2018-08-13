@@ -11,8 +11,8 @@ export class Exchange {
     return req
   }
 
-  static exchangeUser(id: number): Promise<any> {
-    const request = axios.get('/exchange/user/' + id)
-    return request
+  static exchangeUser(request: any): Promise<any> {
+    const req = axios.post('/exchange/user', request)
+    return req
   }
 }

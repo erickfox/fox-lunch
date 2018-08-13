@@ -13,7 +13,8 @@ export class HomeComponent implements OnInit {
   reservedMenuView: boolean = false
   availableTickets: number = 0
   exchange = null
-  countDownTimer = this.getCurrentDate() + ' 09:00:00'
+  currentDate = new Date()
+  countDownTimer = this.parseDate(this.currentDate) + ' 09:00:00'
   hours = 0
   minutes = 0
   seconds = 0
@@ -40,7 +41,12 @@ export class HomeComponent implements OnInit {
 
   exchangeUser() {
     // TODO: cambiar 1 por el id original del objeto de usuario
-    Exchange.exchangeUser(1).then(data => {
+    const params = {
+      user_id: 1,
+      date: this.parseDate(new Date())
+    }
+ 
+    Exchange.exchangeUser(params).then(data => {
       this.reservedMenuView = true
       this.exchange = {
         id: data.data.id,
@@ -88,12 +94,9 @@ export class HomeComponent implements OnInit {
     }
   }
 
-
-  getCurrentDate() {
-    const currentDate = new Date()
-    const parseDate = currentDate.getFullYear() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getDate()
-
-    return parseDate
+  parseDate(date) {
+    const typeDate = new Date(date)
+    return typeDate.getFullYear() + '-' + (typeDate.getMonth() + 1) + '-' + typeDate.getDate()
   }
 
   startTimer() {
