@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
 
       this.availableTickets = sortData.length
     }).catch(error => {
-      console.log('Error al obtener los tickets disponibles')
+      console.log('getAvailableTickets => ', error.response.data.message)
     })
   }
 
@@ -57,6 +57,7 @@ export class HomeComponent implements OnInit {
         }
       }
     }).catch(error => {
+      console.log('exchangeUser => ', error.response.data.message)
       const currentTime = new Date().getHours()
       this.toReserveView = currentTime < 9 ? true : false
       this.salesView = true
@@ -73,7 +74,7 @@ export class HomeComponent implements OnInit {
         console.log('Canje cancelado')
         window.location.reload()
       }).catch(error => {
-        console.log('Error al cancelar canje')
+        console.log('cancelExchage => ', error.response.data.message)
       })
     }
   }
@@ -88,7 +89,7 @@ export class HomeComponent implements OnInit {
         console.log('Ticket vendido')
         window.location.reload()
       }).catch(error => {
-        console.log('Error al vender el ticket')
+        console.log('sellTicket => ', error.response.data.message)
       })
     }
   }

@@ -2,12 +2,10 @@ import axios from 'axios'
 
 export class Sale {
   static sell(request: any): Promise<any> {
-    const req = axios.put('/sale', request)
-    return req
+    return axios.put('/sale', request)
   }
 
   static available(): Promise<any> {
-    const req = axios.get('/sale/available')
-    return req
+    return axios.get('/sale/available')
   }
 }

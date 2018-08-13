@@ -1,15 +1,12 @@
 import axios from 'axios'
 
 export class Menu {
-
   static all(): Promise<any> {
-    const request = axios.get('/menus')
-    return request
+    return axios.get('/menus')
   }
 
   static getOne(id: string): Promise<any> {
-    const request = axios.get('/menus/' + id)
-    return request
+    return axios.get('/menus/' + id)
   }
 
   static storeObject(request: any): Promise<any> {
@@ -33,13 +30,10 @@ export class Menu {
   }
 
   static deleteObject(id: number): Promise<any> {
-    const request = axios.delete('/user/' + id)
-    return request
+    return axios.delete('/user/' + id)
   }
 
   static getByDate(date: string): Promise<any> {
-    const request = axios.get('/menus/date/' + date)
-    return request
+    return axios.get('/menus/date/' + date)
   }
-
 }

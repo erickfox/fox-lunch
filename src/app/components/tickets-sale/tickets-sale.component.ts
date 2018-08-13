@@ -21,7 +21,7 @@ export class TicketsSaleComponent implements OnInit {
     Sale.available().then(data => {
       this.availableTickets = data.data
     }).catch(error => {
-
+      console.log('getAvailable => ', error.response.data.message)
     })
   }
 }

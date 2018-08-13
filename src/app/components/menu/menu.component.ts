@@ -40,7 +40,7 @@ export class MenuComponent implements OnInit {
         this.menuList.push(menuItem)
       });
     }).catch(error => {
-      console.log('Error => ', error)
+      console.log('getByDate => ', error.response.data.message)
     })
   }
 
@@ -55,7 +55,7 @@ export class MenuComponent implements OnInit {
     Exchange.exchange(params).then(data => {
       this.router.navigate(['/home']);
     }).catch(error => {
-      console.log('Error => ', error)
+      console.log('exchange => ', error.response.data.message)
     })
   }
 }

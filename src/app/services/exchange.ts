@@ -2,17 +2,14 @@ import axios from 'axios'
 
 export class Exchange {
   static exchange(request: any): Promise<any> {
-    const req = axios.post('/exchange', request)
-    return req
+    return axios.post('/exchange', request)
   }
 
   static cancel(request: any): Promise<any> {
-    const req = axios.put('/exchange/cancel', request)
-    return req
+    return axios.put('/exchange/cancel', request)
   }
 
   static exchangeUser(request: any): Promise<any> {
-    const req = axios.post('/exchange/user', request)
-    return req
+    return axios.post('/exchange/user', request)
   }
 }
