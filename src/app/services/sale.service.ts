@@ -1,13 +1,15 @@
-import { Injectable } from '@angular/core';
-import axios from 'axios'
+import { Injectable } from '@angular/core'
+import { HttpClient } from '@angular/common/http'
 
 @Injectable()
 export class SaleService {
+  constructor(private http: HttpClient) { }
+
   sell(request: any) {
-    return axios.put('/sale', request)
+    return this.http.put('/sale', request)
   }
 
   available() {
-    return axios.get('/sale/available')
+    return this.http.get('/sale/available')
   }
 }

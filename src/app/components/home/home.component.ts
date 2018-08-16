@@ -29,13 +29,13 @@ export class HomeComponent implements OnInit {
   }
 
   getAvailableTickets() {
-    this.saleService.available().then(data => {
-      const sortData = data.data.filter(item => item.status === 3)
+    // this.saleService.available().then(data => {
+    //   const sortData = data.data.filter(item => item.status === 3)
 
-      this.availableTickets = sortData.length
-    }).catch(error => {
-      console.log('getAvailableTickets => ', error.response.data.message)
-    })
+    //   this.availableTickets = sortData.length
+    // }).catch(error => {
+    //   console.log('getAvailableTickets => ', error.response.data.message)
+    // })
   }
 
   exchangeUser() {
@@ -45,22 +45,22 @@ export class HomeComponent implements OnInit {
       date: this.parseDate(new Date())
     }
  
-    this.exchangeService.exchangeUser(params).then(data => {
-      this.reservedMenuView = true
-      this.exchange = {
-        id: data.data.id,
-        menu: {
-          name: data.data.Menu.name,
-          description: data.data.Menu.description,
-          garnish: data.data.Menu.garnish.split(',')
-        }
-      }
-    }).catch(error => {
-      console.log('exchangeUser => ', error.response.data.message)
-      const currentTime = new Date().getHours()
-      this.toReserveView = currentTime < 9 ? true : false
-      this.salesView = true
-    })
+    // this.exchangeService.exchangeUser(params).then(data => {
+    //   this.reservedMenuView = true
+    //   this.exchange = {
+    //     id: data.data.id,
+    //     menu: {
+    //       name: data.data.Menu.name,
+    //       description: data.data.Menu.description,
+    //       garnish: data.data.Menu.garnish.split(',')
+    //     }
+    //   }
+    // }).catch(error => {
+    //   console.log('exchangeUser => ', error.response.data.message)
+    //   const currentTime = new Date().getHours()
+    //   this.toReserveView = currentTime < 9 ? true : false
+    //   this.salesView = true
+    // })
   }
 
   cancelExchage() {
@@ -69,12 +69,12 @@ export class HomeComponent implements OnInit {
         exchange_id: this.exchange.id
       }
 
-      this.exchangeService.cancel(params).then(data => {
-        console.log('Canje cancelado')
-        window.location.reload()
-      }).catch(error => {
-        console.log('cancelExchage => ', error.response.data.message)
-      })
+      // this.exchangeService.cancel(params).then(data => {
+      //   console.log('Canje cancelado')
+      //   window.location.reload()
+      // }).catch(error => {
+      //   console.log('cancelExchage => ', error.response.data.message)
+      // })
     }
   }
 
@@ -84,12 +84,12 @@ export class HomeComponent implements OnInit {
         exchange_id: this.exchange.id
       }
 
-      this.saleService.sell(params).then(data => {
-        console.log('Ticket vendido')
-        window.location.reload()
-      }).catch(error => {
-        console.log('sellTicket => ', error.response.data.message)
-      })
+      // this.saleService.sell(params).then(data => {
+      //   console.log('Ticket vendido')
+      //   window.location.reload()
+      // }).catch(error => {
+      //   console.log('sellTicket => ', error.response.data.message)
+      // })
     }
   }
 

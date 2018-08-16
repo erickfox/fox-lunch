@@ -1,17 +1,19 @@
-import { Injectable } from '@angular/core';
-import axios from 'axios'
+import { Injectable } from '@angular/core'
+import { HttpClient } from '@angular/common/http'
 
 @Injectable()
 export class ExchangeService {
+  constructor(private http: HttpClient) { }
+
   exchange(request: any) {
-    return axios.post('/exchange', request)
+    return this.http.post('/exchange', request)
   }
 
   cancel(request: any) {
-    return axios.put('/exchange/cancel', request)
+    return this.http.put('/exchange/cancel', request)
   }
 
   exchangeUser(request: any) {
-    return axios.post('/exchange/user', request)
+    return this.http.post('/exchange/user', request)
   }
 }

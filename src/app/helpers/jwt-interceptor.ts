@@ -1,10 +1,19 @@
-import axios from 'axios'
+import { Injectable } from '@angular/core';
+import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-axios.interceptors.request.use((config) => {
-  const token = ""
-  config.headers.Authorization = `Bearer ${token}`;
+@Injectable()
+export class JwtInterceptor implements HttpInterceptor {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser && currentUser.token) {
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${currentUser.token}`
+        }
+      });
+    }
 
-  return config;
-}, (err) => {
-  return Promise.reject(err);
-});
+    return next.handle(request);
+  }
+}

@@ -1,14 +1,16 @@
-import { Injectable } from '@angular/core';
-import axios from 'axios'
+import { Injectable } from '@angular/core'
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class MenuService {
+  constructor(private http: HttpClient) { }
+
   all() {
-    return axios.get('/menus')
+    return this.http.get('/menus')
   }
 
   getOne(id: string) {
-    return axios.get('/menus/' + id)
+    return this.http.get('/menus/' + id)
   }
 
   storeObject(request: any) {
@@ -18,7 +20,7 @@ export class MenuService {
       password,
       isAdmin
     } = request
-    const req = axios.post('/user', request)
+    const req = this.http.post('/user', request)
     return req
   }
 
@@ -26,15 +28,15 @@ export class MenuService {
     const {
       id
     } = request
-    const req = axios.put('/user/' + id, request)
+    const req = this.http.put('/user/' + id, request)
     return req
   }
 
   deleteObject(id: number) {
-    return axios.delete('/user/' + id)
+    return this.http.delete('/user/' + id)
   }
 
   getByDate(date: string) {
-    return axios.get('/menus/date/' + date)
+    return this.http.get('/menus/date/' + date)
   }
 }

@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
-import axios from 'axios'
+import { Injectable } from '@angular/core'
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class PurchaseService {
+  constructor(private http: HttpClient) { }
+
   purchase(request: any) {
-    return axios.post('/purchase', request)
+    return this.http.post('/purchase', request)
   }
 }

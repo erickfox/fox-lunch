@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
-import axios from 'axios'
+import { HttpClient } from '@angular/common/http'
 
 @Injectable()
 export class UserService {
+  constructor(private http: HttpClient) { }
+
   all() {
-    return axios.get('/user')
+    return this.http.get('/user')
   }
 
   getOne(id) {
-    return axios.get('/user/' + id)
+    return this.http.get('/user/' + id)
   }
 
   storeObject(request: any) {
-    const req = axios.post('/user', request)
+    const req = this.http.post('/user', request)
     return req
   }
 
@@ -21,14 +23,14 @@ export class UserService {
       id
     } = request
     
-    return axios.put('/user/' + id, request)
+    return this.http.put('/user/' + id, request)
   }
 
   deleteObject(id: number) {
-    return axios.delete('/user/' + id)
+    return this.http.delete('/user/' + id)
   }
 
   auth(request: any) {
-    return axios.post('/login', request)
+    return this.http.post('/login', request)
   }
 }

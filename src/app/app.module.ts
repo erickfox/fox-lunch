@@ -1,7 +1,7 @@
 // Dependencies
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 
 // Components
@@ -13,6 +13,9 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ProfilePurchaseComponent } from './components/profile-purchase/profile-purchase.component';
 import { ProfileSalesComponent } from './components/profile-sales/profile-sales.component';
 import { TicketsSaleComponent } from './components/tickets-sale/tickets-sale.component';
+
+// Providers
+import { JwtInterceptor } from './helpers/jwt-interceptor'
 
 const appRoutes: Routes = [
   {
@@ -58,7 +61,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes, {onSameUrlNavigation: 'reload'})
   ],
   exports: [RouterModule],

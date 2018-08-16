@@ -18,10 +18,10 @@ export class TicketsSaleComponent implements OnInit {
   }
 
   getAvailable() {
-    this.saleService.available().then(data => {
-      this.availableTickets = data.data
-    }).catch(error => {
-      console.log('getAvailable => ', error.response.data.message)
-    })
+    // this.saleService.available().then(data => {
+    //   this.availableTickets = data.data
+    // }).catch(error => {
+    //   console.log('getAvailable => ', error.response.data.message)
+    // })
   }
 }
