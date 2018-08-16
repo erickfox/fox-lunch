@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Menu } from '../../services'
-import { Exchange } from '../../services'
+import { MenuService, ExchangeService } from '../../services'
 
 @Component({
   selector: 'app-menu',
@@ -12,7 +11,7 @@ export class MenuComponent implements OnInit {
   menuList = []
   currentDate = new Date()
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private menuService: MenuService, private exchangeService: ExchangeService) {
 
   }
 
@@ -26,7 +25,7 @@ export class MenuComponent implements OnInit {
   }
 
   getByDate(date: string) {
-    Menu.getByDate(date).then(data => {
+    this.menuService.getByDate(date).then(data => {
       data.data.forEach(element => {
         let menuItem: object = {}
         menuItem = {
@@ -52,7 +51,7 @@ export class MenuComponent implements OnInit {
       date: menu.date
     }
 
-    Exchange.exchange(params).then(data => {
+    this.exchangeService.exchange(params).then(data => {
       this.router.navigate(['/home']);
     }).catch(error => {
       console.log('exchange => ', error.response.data.message)

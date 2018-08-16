@@ -1,15 +1,17 @@
+import { Injectable } from '@angular/core';
 import axios from 'axios'
 
-export class Menu {
-  static all(): Promise<any> {
+@Injectable()
+export class MenuService {
+  all() {
     return axios.get('/menus')
   }
 
-  static getOne(id: string): Promise<any> {
+  getOne(id: string) {
     return axios.get('/menus/' + id)
   }
 
-  static storeObject(request: any): Promise<any> {
+  storeObject(request: any) {
     const {
       name,
       email,
@@ -20,8 +22,7 @@ export class Menu {
     return req
   }
 
-
-  static updateObject(request: any): Promise<any> {
+  updateObject(request: any) {
     const {
       id
     } = request
@@ -29,11 +30,11 @@ export class Menu {
     return req
   }
 
-  static deleteObject(id: number): Promise<any> {
+  deleteObject(id: number) {
     return axios.delete('/user/' + id)
   }
 
-  static getByDate(date: string): Promise<any> {
+  getByDate(date: string) {
     return axios.get('/menus/date/' + date)
   }
 }

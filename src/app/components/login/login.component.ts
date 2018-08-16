@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { User } from '../../services'
+import { UserService } from '../../services'
 
 @Component({
   selector: 'app-login',
@@ -13,7 +13,6 @@ export class LoginComponent {
   }
 
   login() {
-    const response = User.auth(this.model)
-    console.log(response)
+    
   }
 }

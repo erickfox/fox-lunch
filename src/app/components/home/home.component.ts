@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { Sale } from '../../services'
-import { Exchange } from '../../services'
+import { ExchangeService, SaleService } from '../../services'
 
 @Component({
   selector: 'app-home',
@@ -19,7 +18,7 @@ export class HomeComponent implements OnInit {
   minutes = 0
   seconds = 0
 
-  constructor() {
+  constructor(private exchangeService: ExchangeService, private saleService: SaleService) {
 
   }
 
@@ -30,7 +29,7 @@ export class HomeComponent implements OnInit {
   }
 
   getAvailableTickets() {
-    Sale.available().then(data => {
+    this.saleService.available().then(data => {
       const sortData = data.data.filter(item => item.status === 3)
 
       this.availableTickets = sortData.length
@@ -46,7 +45,7 @@ export class HomeComponent implements OnInit {
       date: this.parseDate(new Date())
     }
  
-    Exchange.exchangeUser(params).then(data => {
+    this.exchangeService.exchangeUser(params).then(data => {
       this.reservedMenuView = true
       this.exchange = {
         id: data.data.id,
@@ -70,7 +69,7 @@ export class HomeComponent implements OnInit {
         exchange_id: this.exchange.id
       }
 
-      Exchange.cancel(params).then(data => {
+      this.exchangeService.cancel(params).then(data => {
         console.log('Canje cancelado')
         window.location.reload()
       }).catch(error => {
@@ -85,7 +84,7 @@ export class HomeComponent implements OnInit {
         exchange_id: this.exchange.id
       }
 
-      Sale.sell(params).then(data => {
+      this.saleService.sell(params).then(data => {
         console.log('Ticket vendido')
         window.location.reload()
       }).catch(error => {

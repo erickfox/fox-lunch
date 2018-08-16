@@ -1,21 +1,22 @@
+import { Injectable } from '@angular/core';
 import axios from 'axios'
 
-export class User {
-
-  static all(): Promise<any> {
+@Injectable()
+export class UserService {
+  all() {
     return axios.get('/user')
   }
 
-  static getOne(id): Promise<any> {
+  getOne(id) {
     return axios.get('/user/' + id)
   }
 
-  static storeObject(request: any): Promise<any> {
+  storeObject(request: any) {
     const req = axios.post('/user', request)
     return req
   }
 
-  static updateObject(request: any): Promise<any> {
+  updateObject(request: any) {
     const {
       id
     } = request
@@ -23,11 +24,11 @@ export class User {
     return axios.put('/user/' + id, request)
   }
 
-  static deleteObject(id: number): Promise<any> {
+  deleteObject(id: number) {
     return axios.delete('/user/' + id)
   }
 
-  static auth(request: any): Promise<any> {
+  auth(request: any) {
     return axios.post('/login', request)
   }
 }

@@ -1,15 +1,17 @@
+import { Injectable } from '@angular/core';
 import axios from 'axios'
 
-export class Exchange {
-  static exchange(request: any): Promise<any> {
+@Injectable()
+export class ExchangeService {
+  exchange(request: any) {
     return axios.post('/exchange', request)
   }
 
-  static cancel(request: any): Promise<any> {
+  cancel(request: any) {
     return axios.put('/exchange/cancel', request)
   }
 
-  static exchangeUser(request: any): Promise<any> {
+  exchangeUser(request: any) {
     return axios.post('/exchange/user', request)
   }
 }

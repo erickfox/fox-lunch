@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { Sale } from '../../services'
+import { SaleService } from '../../services'
 
 @Component({
   selector: 'app-tickets-sale',
@@ -9,7 +9,7 @@ export class TicketsSaleComponent implements OnInit {
 
   availableTickets = []
 
-  constructor() {
+  constructor(private saleService: SaleService) {
 
   }
 
@@ -18,7 +18,7 @@ export class TicketsSaleComponent implements OnInit {
   }
 
   getAvailable() {
-    Sale.available().then(data => {
+    this.saleService.available().then(data => {
       this.availableTickets = data.data
     }).catch(error => {
       console.log('getAvailable => ', error.response.data.message)
