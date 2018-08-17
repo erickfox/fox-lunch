@@ -8,10 +8,10 @@ export class SaleService {
   constructor(private http: HttpClient) { }
 
   sell(request: any) {
-    return this.http.put<Exchange>('http://127.0.0.1:8080/sale', request)
+    return this.http.put<Exchange>('/sale', request)
   }
 
   available() {
-    return this.http.get<[AvailableTickets]>('http://127.0.0.1:8080/sale/available')
+    return this.http.get<[AvailableTickets]>('/sale/available')
   }
 }
