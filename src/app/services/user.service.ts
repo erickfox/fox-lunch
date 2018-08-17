@@ -6,15 +6,15 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   all() {
-    return this.http.get('/user')
+    return this.http.get('http://127.0.0.1:8080/user')
   }
 
   getOne(id) {
-    return this.http.get('/user/' + id)
+    return this.http.get('http://127.0.0.1:8080/user/' + id)
   }
 
   storeObject(request: any) {
-    const req = this.http.post('/user', request)
+    const req = this.http.post('http://127.0.0.1:8080/user', request)
     return req
   }
 
@@ -23,10 +23,10 @@ export class UserService {
       id
     } = request
     
-    return this.http.put('/user/' + id, request)
+    return this.http.put('http://127.0.0.1:8080/user/' + id, request)
   }
 
   deleteObject(id: number) {
-    return this.http.delete('/user/' + id)
+    return this.http.delete('http://127.0.0.1:8080/user/' + id)
   }
 }

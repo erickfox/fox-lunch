@@ -7,11 +7,11 @@ export class ExchangeService {
   constructor(private http: HttpClient) { }
 
   exchange(request: any) {
-    return this.http.post('/exchange', request)
+    return this.http.post('http://127.0.0.1:8080/exchange', request)
   }
 
   cancel(request: any) {
-    return this.http.put('/exchange/cancel', request)
+    return this.http.put<Exchange>('http://127.0.0.1:8080/exchange/cancel', request)
   }
 
   exchangeUser(request: any) {

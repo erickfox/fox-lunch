@@ -69,12 +69,12 @@ export class HomeComponent implements OnInit {
         exchange_id: this.exchange.id
       }
 
-      // this.exchangeService.cancel(params).then(data => {
-      //   console.log('Canje cancelado')
-      //   window.location.reload()
-      // }).catch(error => {
-      //   console.log('cancelExchage => ', error)
-      // })
+      this.exchangeService.cancel(params).toPromise().then(data => {
+        console.log('Canje cancelado => ', data)
+        window.location.reload()
+      }).catch(error => {
+        console.log('cancelExchage => ', error)
+      })
     }
   }
 
@@ -84,12 +84,12 @@ export class HomeComponent implements OnInit {
         exchange_id: this.exchange.id
       }
 
-      // this.saleService.sell(params).then(data => {
-      //   console.log('Ticket vendido')
-      //   window.location.reload()
-      // }).catch(error => {
-      //   console.log('sellTicket => ', error.response.data.message)
-      // })
+      this.saleService.sell(params).toPromise().then(data => {
+        console.log('Ticket vendido => ', data)
+        window.location.reload()
+      }).catch(error => {
+        console.log('sellTicket => ', error.response.data.message)
+      })
     }
   }
 
