@@ -1,11 +1,11 @@
 <div class="row align-items-center">
   <div class="col-12 mt-5 px-3 py-4 clearfix border-bottom">
-    <img class="rounded-circle mr-3 bg-light float-left" width="75" height="75">
+    <img [src]="currentUser.picture" class="rounded-circle mr-3 bg-light float-left" width="75" height="75">
     <div class="float-left">
-      <p class=" m-0 pt-2 h6">ID [IDNumber]</p>
-      <p class=" m-0 py-1 h6">Jacky Ortiz</p>
+      <p class=" m-0 pt-2 h6">ID {{ currentUser.id }}</p>
+      <p class=" m-0 py-1 h6">{{ currentUser.name }}</p>
       <p class=" m-0 py-0 h6">Te quedan
-        <span class="font-orange font-weight-bold">9</span> tickets.</p>
+        <span class="font-orange font-weight-bold">{{ currentUser.tickets }}</span> tickets.</p>
     </div>
   </div>
   <div class="col-12 py-4 px-3 clearfix border-bottom">
@@ -31,6 +31,6 @@
     </div>
   </div>
   <div class="col-12 clearfix">
-    <button class="btn btn-md btn-block bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase my-5" type="submit">cerrar sesión</button>
+    <button routerLink="/login" class="btn btn-md btn-block bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase my-5" type="submit">cerrar sesión</button>
   </div>
 </div>
