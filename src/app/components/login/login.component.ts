@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  get form() { 
+  get form() {
     return this.loginForm.controls
   }
 
@@ -39,11 +39,12 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authenticationService.login(this.form.email.value, this.form.password.value).toPromise().then(data => {
-      this.router.navigate([this.returnUrl]);
-    }).catch(error => {
-      console.log('Login => ', error)
-      this.loading = false;
-    })
+    this.authenticationService.login(this.form.email.value, this.form.password.value).pipe().subscribe(
+      data => {
+        this.router.navigate([this.returnUrl]);
+      }, error => {
+        console.log('Login => ', error)
+        this.loading = false;
+      })
   }
 }

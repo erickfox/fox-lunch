@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { ExchangeService, SaleService, AuthenticationService } from '../../services'
+import { User } from '../../models'
 
 @Component({
   selector: 'app-home',
@@ -17,9 +18,10 @@ export class HomeComponent implements OnInit {
   hours = 0
   minutes = 0
   seconds = 0
+  currentUser: User
 
   constructor(private exchangeService: ExchangeService, private saleService: SaleService, private authService: AuthenticationService) {
-
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   ngOnInit() {
@@ -38,28 +40,29 @@ export class HomeComponent implements OnInit {
   }
 
   exchangeUser() {
-    // TODO: cambiar 1 por el id original del objeto de usuario
     const params = {
-      user_id: 1,
+      user_id: this.currentUser.id,
       date: this.parseDate(new Date())
     }
 
-    this.exchangeService.exchangeUser(params).toPromise().then(data => {
-      this.reservedMenuView = true
-      this.exchange = {
-        id: data.id,
-        menu: {
-          name: data.Menu.name,
-          description: data.Menu.description,
-          garnish: data.Menu.garnish.split(',')
+    this.exchangeService.exchangeUser(params).pipe().subscribe(
+      data => {
+        this.reservedMenuView = true
+        this.exchange = {
+          id: data.id,
+          menu: {
+            name: data.Menu.name,
+            description: data.Menu.description,
+            garnish: data.Menu.garnish.split(',')
+          }
         }
-      }
-    }).catch(error => {
-      console.log('exchangeUser => ', error)
-      const currentTime = new Date().getHours()
-      this.toReserveView = currentTime < 9 ? true : false
-      this.salesView = true
-    })
+      },
+      error => {
+        console.log('exchangeUser => ', error)
+        const currentTime = new Date().getHours()
+        this.toReserveView = currentTime < 9 ? true : false
+        this.salesView = true
+      })
   }
 
   cancelExchage() {
@@ -68,12 +71,14 @@ export class HomeComponent implements OnInit {
         exchange_id: this.exchange.id
       }
 
-      this.exchangeService.cancel(params).toPromise().then(data => {
-        console.log('Canje cancelado => ', data)
-        window.location.reload()
-      }).catch(error => {
-        console.log('cancelExchage => ', error)
-      })
+      this.exchangeService.cancel(params).pipe().subscribe(
+        data => {
+          console.log('Canje cancelado => ', data)
+          window.location.reload()
+        },
+        error => {
+          console.log('cancelExchage => ', error)
+        })
     }
   }
 
@@ -83,12 +88,13 @@ export class HomeComponent implements OnInit {
         exchange_id: this.exchange.id
       }
 
-      this.saleService.sell(params).toPromise().then(data => {
-        console.log('Ticket vendido => ', data)
-        window.location.reload()
-      }).catch(error => {
-        console.log('sellTicket => ', error.response.data.message)
-      })
+      this.saleService.sell(params).pipe().subscribe(
+        data => {
+          console.log('Ticket vendido => ', data)
+          window.location.reload()
+        }, error => {
+          console.log('sellTicket => ', error.response.data.message)
+        })
     }
   }
 

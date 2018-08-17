@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+import { TicketPurchaseByMonth  } from '../models'
 
 @Injectable()
 export class UserService {
@@ -28,5 +29,9 @@ export class UserService {
 
   deleteObject(id: number) {
     return this.http.delete('/user/' + id)
+  }
+
+  purchaseByMonth(id: number) {
+    return this.http.get<[TicketPurchaseByMonth]>('/user/'+ id + '/purchasebymonth')
   }
 }
