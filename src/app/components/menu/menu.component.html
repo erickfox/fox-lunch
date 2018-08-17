@@ -26,8 +26,26 @@
       <li class="list-group-item" *ngFor="let item of menu.garnish">{{ item }}</li>
       <li class="list-group-item border-top-0">
         <button class="btn btn-md btn-block bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase mt-2 mb-3" data-toggle="modal"
-          data-target="#exampleModal" (click)="exchange(menu)">Canjear ticket</button>
+          data-target="#exampleModal" (click)="openModal(menu)">Canjear ticket</button>
       </li>
     </ul>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal mx-2 fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" [ngStyle]="{'display': mdlSampleIsOpen ? 'block' : 'none', 'opacity': 1}">
+  <div class="modal-dialog-centered" role="document">
+    <div class="modal-content shadow-medium">
+      <div class="modal-body text-center">
+        <p class="h2 font-weight-light">¡Buen provecho!</p>
+        <p class="py-0 my-0 font-gray">Haz canjeado tu ticket para</p>
+        <p class="py-1 my-0 font-orange h5">22/07/2018</p>
+        <p class="py-0 my-0 font-gray">elegiste el [MenúSelected]</p>
+        <p class="py-3 mb-0">
+          <i class="material-icons md-48 font-orange">restaurant</i>
+        </p>
+        <button type="button" class="btn px-5 bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase" data-dismiss="modal">Continuar</button>
+      </div>
+    </div>
   </div>
 </div>
