@@ -1,6 +1,7 @@
 // Dependencies
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
+import { ReactiveFormsModule }    from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router'
 
@@ -22,31 +23,41 @@ import { AuthenticationService, ExchangeService, MenuService, PurchaseService, S
 const appRoutes: Routes = [
   {
     path: 'login',
-    component: LoginComponent 
+    component: LoginComponent
   },
   {
-    path: 'home',
-    component: HomeComponent 
+    path: '',
+    component: HomeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'menu',
-    component: MenuComponent 
+    component: MenuComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'profile',
-    component: ProfileComponent 
+    component: ProfileComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'profile-purchase',
-    component: ProfilePurchaseComponent 
+    component: ProfilePurchaseComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'profile-sales',
-    component: ProfileSalesComponent 
+    component: ProfileSalesComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'ticket-sale',
-    component: TicketsSaleComponent 
+    component: TicketsSaleComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
 ]
 
@@ -54,7 +65,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent, 
+    HomeComponent,
     MenuComponent,
     ProfileComponent,
     ProfilePurchaseComponent,
@@ -64,11 +75,13 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes, {onSameUrlNavigation: 'reload'})
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes, { onSameUrlNavigation: 'reload' })
   ],
   exports: [RouterModule],
   providers: [
-    AuthGuard, AuthenticationService,
+    AuthGuard, 
+    AuthenticationService,
     ExchangeService,
     MenuService,
     PurchaseService,

@@ -52,7 +52,7 @@ export class MenuComponent implements OnInit {
     }
 
     this.exchangeService.exchange(params).toPromise().then(data => {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/']);
     }).catch(error => {
       console.log('exchange => ', error)
     })

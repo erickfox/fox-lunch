@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { AuthGuard } from './guards'
 
 @Component({
   selector: 'app-root',
@@ -6,6 +7,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 })
 export class AppComponent {
   @ViewChild('navBar') navBar:ElementRef;
+
   constructor() {
     
   }
