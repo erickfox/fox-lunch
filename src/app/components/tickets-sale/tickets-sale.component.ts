@@ -6,7 +6,7 @@ import { SaleService } from '../../services'
   selector: 'app-tickets-sale',
   templateUrl: './tickets-sale.component.html',
 })
-export class TicketsSaleComponent implements OnInit { 
+export class TicketsSaleComponent implements OnInit {
   availableTickets: AvailableTickets[] = [];
 
   constructor(private saleService: SaleService) {
@@ -18,10 +18,12 @@ export class TicketsSaleComponent implements OnInit {
   }
 
   getAvailable() {
-    this.saleService.available().toPromise().then(data => {
-      this.availableTickets = data
-    }).catch(error => {
-      console.log('getAvailable => ', error)
-    })
+    this.saleService.available().pipe().subscribe(
+      data => {
+        this.availableTickets = data
+      },
+      error => {
+        console.log('getAvailable => ', error)
+      })
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TicketsSold } from '../../models'
+import { TicketsSold, User } from '../../models'
 import { UserService } from '../../services'
 
 @Component({
@@ -8,9 +8,10 @@ import { UserService } from '../../services'
 })
 export class ProfileSalesComponent implements OnInit {
   ticketsSold: TicketsSold[]
+  currentUser: User
 
   constructor(private userService: UserService) {
-
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   ngOnInit() {
@@ -18,7 +19,7 @@ export class ProfileSalesComponent implements OnInit {
   }
 
   getTicketsSold() {
-    this.userService.ticketsSold().pipe().subscribe(
+    this.userService.ticketsSold(this.currentUser.id).pipe().subscribe(
       data => {
         this.ticketsSold = data
       },
