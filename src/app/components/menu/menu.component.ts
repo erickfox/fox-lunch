@@ -25,22 +25,22 @@ export class MenuComponent implements OnInit {
   }
 
   getByDate(date: string) {
-    // this.menuService.getByDate(date).then(data => {
-    //   data.data.forEach(element => {
-    //     let menuItem: object = {}
-    //     menuItem = {
-    //       id: element.id,
-    //       date: element.date,
-    //       name: element.name,
-    //       description: element.description,
-    //       garnish: element.garnish.split(',')
-    //     }
+    this.menuService.getByDate(date).toPromise().then(data => {
+      data.forEach(element => {
+        let menuItem: object = {}
+        menuItem = {
+          id: element.id,
+          date: element.date,
+          name: element.name,
+          description: element.description,
+          garnish: element.garnish.split(',')
+        }
 
-    //     this.menuList.push(menuItem)
-    //   });
-    // }).catch(error => {
-    //   console.log('getByDate => ', error.response.data.message)
-    // })
+        this.menuList.push(menuItem)
+      });
+    }).catch(error => {
+      console.log('getByDate => ', error)
+    })
   }
 
   exchange(menu) {
@@ -51,10 +51,10 @@ export class MenuComponent implements OnInit {
       date: menu.date
     }
 
-    // this.exchangeService.exchange(params).then(data => {
-    //   this.router.navigate(['/home']);
-    // }).catch(error => {
-    //   console.log('exchange => ', error.response.data.message)
-    // })
+    this.exchangeService.exchange(params).toPromise().then(data => {
+      this.router.navigate(['/home']);
+    }).catch(error => {
+      console.log('exchange => ', error)
+    })
   }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core'
 import { ExchangeService, SaleService, AuthenticationService } from '../../services'
-import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',

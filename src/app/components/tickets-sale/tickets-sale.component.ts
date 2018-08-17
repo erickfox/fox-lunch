@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { AvailableTickets } from '../../models'
 import { SaleService } from '../../services'
 
 @Component({
@@ -6,8 +7,7 @@ import { SaleService } from '../../services'
   templateUrl: './tickets-sale.component.html',
 })
 export class TicketsSaleComponent implements OnInit { 
-
-  availableTickets = []
+  availableTickets: AvailableTickets[] = [];
 
   constructor(private saleService: SaleService) {
 
@@ -18,10 +18,10 @@ export class TicketsSaleComponent implements OnInit {
   }
 
   getAvailable() {
-    // this.saleService.available().then(data => {
-    //   this.availableTickets = data.data
-    // }).catch(error => {
-    //   console.log('getAvailable => ', error.response.data.message)
-    // })
+    this.saleService.available().toPromise().then(data => {
+      this.availableTickets = data
+    }).catch(error => {
+      console.log('getAvailable => ', error)
+    })
   }
 }

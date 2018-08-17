@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http';
+import { Menu } from '../models/menu'
 
 @Injectable()
 export class MenuService {
@@ -37,6 +38,6 @@ export class MenuService {
   }
 
   getByDate(date: string) {
-    return this.http.get('http://127.0.0.1:8080/menus/date/' + date)
+    return this.http.get<[Menu]>('http://127.0.0.1:8080/menus/date/' + date)
   }
 }
