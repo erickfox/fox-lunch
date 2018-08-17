@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TicketPurchaseByMonth, User } from '../../models'
+import { TicketPurchaseByMonth } from '../../models'
 import { UserService } from '../../services'
 
 @Component({
@@ -8,10 +8,9 @@ import { UserService } from '../../services'
 })
 export class ProfilePurchaseComponent implements OnInit {
   purchaseByMonth: TicketPurchaseByMonth[]
-  currentUser: User
 
   constructor(private userService: UserService) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+
   }
 
   ngOnInit() {
@@ -19,13 +18,12 @@ export class ProfilePurchaseComponent implements OnInit {
   }
 
   getPurchaseByMonth() {
-    this.userService.purchaseByMonth(this.currentUser.id).pipe().subscribe(
+    this.userService.purchaseByMonth().pipe().subscribe(
       data => {
         this.purchaseByMonth = data.filter(item => item.tickets.length > 0)
       },
       error => {
         console.log(error)
-      }
-    )
+      })
   }
 }

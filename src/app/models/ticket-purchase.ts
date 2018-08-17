@@ -3,4 +3,5 @@ export class TicketPurchase {
   quantity: number;
   amount: number;
   UserId: number;
+  updatedAt: string
 }

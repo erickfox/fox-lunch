@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { TicketPurchaseByMonth  } from '../models'
+import { TicketPurchaseByMonth, TicketsSold, User } from '../models'
 
 @Injectable()
 export class UserService {
-  constructor(private http: HttpClient) { }
+  currentUser: User
+  constructor(private http: HttpClient) { 
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
 
   all() {
     return this.http.get('/user')
   }
 
-  getOne(id) {
-    return this.http.get('/user/' + id)
+  getOne() {
+    return this.http.get('/user/' + this.currentUser.id)
   }
 
   storeObject(request: any) {
@@ -24,14 +27,18 @@ export class UserService {
       id
     } = request
     
-    return this.http.put('/user/' + id, request)
+    return this.http.put('/user/' + this.currentUser.id, request)
   }
 
-  deleteObject(id: number) {
-    return this.http.delete('/user/' + id)
+  deleteObject() {
+    return this.http.delete('/user/' + this.currentUser.id)
   }
 
-  purchaseByMonth(id: number) {
-    return this.http.get<[TicketPurchaseByMonth]>('/user/'+ id + '/purchasebymonth')
+  purchaseByMonth() {
+    return this.http.get<[TicketPurchaseByMonth]>('/user/'+ this.currentUser.id + '/purchasebymonth')
+  }
+
+  ticketsSold() {
+    return this.http.get<[TicketsSold]>('/user/'+ this.currentUser.id + '/ticketssold')
   }
 }

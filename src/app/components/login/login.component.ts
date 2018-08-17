@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     });
 
     this.authenticationService.logout();
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
   }
 
   get form() {
