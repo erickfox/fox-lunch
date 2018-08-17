@@ -6,8 +6,8 @@ import { map } from 'rxjs/operators';
 export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
-  login(username: string, password: string) {
-    return this.http.post<any>(`${config.apiUrl}/users/authenticate`, { username: username, password: password })
+  login(email: string, password: string) {
+    return this.http.post<any>('http://127.0.0.1:8080/login', { email: email, password: password })
       .pipe(map(user => {
         if (user && user.token) {
           localStorage.setItem('currentUser', JSON.stringify(user));

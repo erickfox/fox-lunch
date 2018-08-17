@@ -29,8 +29,4 @@ export class UserService {
   deleteObject(id: number) {
     return this.http.delete('/user/' + id)
   }
-
-  auth(request: any) {
-    return this.http.post('/login', request)
-  }
 }

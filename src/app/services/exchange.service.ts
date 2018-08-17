@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
+import { Exchange } from '../models/exchange'
 
 @Injectable()
 export class ExchangeService {
@@ -14,6 +15,6 @@ export class ExchangeService {
   }
 
   exchangeUser(request: any) {
-    return this.http.post('/exchange/user', request)
+    return this.http.post<Exchange>('http://127.0.0.1:8080/exchange/user', request)
   }
 }

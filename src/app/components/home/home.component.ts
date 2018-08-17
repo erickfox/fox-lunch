@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { ExchangeService, SaleService } from '../../services'
+import { ExchangeService, SaleService, AuthenticationService } from '../../services'
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,7 @@ export class HomeComponent implements OnInit {
   minutes = 0
   seconds = 0
 
-  constructor(private exchangeService: ExchangeService, private saleService: SaleService) {
+  constructor(private exchangeService: ExchangeService, private saleService: SaleService, private authService: AuthenticationService) {
 
   }
 
@@ -29,13 +30,12 @@ export class HomeComponent implements OnInit {
   }
 
   getAvailableTickets() {
-    // this.saleService.available().then(data => {
-    //   const sortData = data.data.filter(item => item.status === 3)
-
-    //   this.availableTickets = sortData.length
-    // }).catch(error => {
-    //   console.log('getAvailableTickets => ', error.response.data.message)
-    // })
+    this.saleService.available().toPromise().then(data => {
+      const sortData = data.filter(item => item.status === 3)
+      this.availableTickets = sortData.length
+    }).catch(error => {
+      console.log('saleService => ', error)
+    })
   }
 
   exchangeUser() {
@@ -44,23 +44,23 @@ export class HomeComponent implements OnInit {
       user_id: 1,
       date: this.parseDate(new Date())
     }
- 
-    // this.exchangeService.exchangeUser(params).then(data => {
-    //   this.reservedMenuView = true
-    //   this.exchange = {
-    //     id: data.data.id,
-    //     menu: {
-    //       name: data.data.Menu.name,
-    //       description: data.data.Menu.description,
-    //       garnish: data.data.Menu.garnish.split(',')
-    //     }
-    //   }
-    // }).catch(error => {
-    //   console.log('exchangeUser => ', error.response.data.message)
-    //   const currentTime = new Date().getHours()
-    //   this.toReserveView = currentTime < 9 ? true : false
-    //   this.salesView = true
-    // })
+
+    this.exchangeService.exchangeUser(params).toPromise().then(data => {
+      this.reservedMenuView = true
+      this.exchange = {
+        id: data.id,
+        menu: {
+          name: data.Menu.name,
+          description: data.Menu.description,
+          garnish: data.Menu.garnish.split(',')
+        }
+      }
+    }).catch(error => {
+      console.log('exchangeUser => ', error)
+      const currentTime = new Date().getHours()
+      this.toReserveView = currentTime < 9 ? true : false
+      this.salesView = true
+    })
   }
 
   cancelExchage() {
@@ -73,7 +73,7 @@ export class HomeComponent implements OnInit {
       //   console.log('Canje cancelado')
       //   window.location.reload()
       // }).catch(error => {
-      //   console.log('cancelExchage => ', error.response.data.message)
+      //   console.log('cancelExchage => ', error)
       // })
     }
   }

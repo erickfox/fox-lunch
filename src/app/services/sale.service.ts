@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
+import { AvailableTickets } from '../models/available-tickets'
 
 @Injectable()
 export class SaleService {
@@ -10,6 +11,6 @@ export class SaleService {
   }
 
   available() {
-    return this.http.get('/sale/available')
+    return this.http.get<[AvailableTickets]>('http://127.0.0.1:8080/sale/available')
   }
 }
