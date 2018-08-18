@@ -74,6 +74,7 @@ export class MenuComponent implements OnInit {
       .subscribe(
         data => {
           this.closeModal()
+          this.router.navigate(['/'])
         },
         error => {
           this.menuSelected = null

@@ -1,7 +1,7 @@
 // Dependencies
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
-import { ReactiveFormsModule }    from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router'
 
@@ -76,6 +76,7 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes, { onSameUrlNavigation: 'reload' })
   ],
   exports: [RouterModule],

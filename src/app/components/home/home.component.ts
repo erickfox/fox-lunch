@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
       .pipe()
       .subscribe(
         data => {
-          const sortData = data.filter(item => item.status === 3)
+          const sortData = data.filter(item => (item.status === 3 && item.UserId !== this.currentUser.id))
           this.availableTickets = sortData.length
         },
         error => {
@@ -53,6 +53,7 @@ export class HomeComponent implements OnInit {
       .pipe()
       .subscribe(
         data => {
+          console.log(data)
           this.reservedMenuView = true
           this.exchange = {
             id: data.id,
