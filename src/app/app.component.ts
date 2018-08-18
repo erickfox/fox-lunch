@@ -1,12 +1,11 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { AuthGuard } from './guards'
+import { Component, ElementRef, ViewChild } from '@angular/core'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  @ViewChild('navBar') navBar:ElementRef;
+  @ViewChild('navBar') navBar:ElementRef
 
   constructor() {
     

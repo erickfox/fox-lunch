@@ -33,19 +33,25 @@
 </div>
 
 <!-- Modal -->
-<div class="modal mx-2 fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" [ngStyle]="{'display': mdlSampleIsOpen ? 'block' : 'none', 'opacity': 1}">
+<div class="modal mx-2 fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" [ngStyle]="{'display': modalIsOpen ? 'block' : 'none', 'opacity': 1}">
   <div class="modal-dialog-centered" role="document">
     <div class="modal-content shadow-medium">
-      <div class="modal-body text-center">
+      <div class="modal-body text-center" *ngIf="menuSelected">
         <p class="h2 font-weight-light">¡Buen provecho!</p>
         <p class="py-0 my-0 font-gray">Haz canjeado tu ticket para</p>
-        <p class="py-1 my-0 font-orange h5">22/07/2018</p>
-        <p class="py-0 my-0 font-gray">elegiste el [MenúSelected]</p>
+        <p class="py-1 my-0 font-orange h5">{{ menuSelected.date | date }}</p>
+        <p class="py-0 my-0 font-gray">elegiste el {{ menuSelected.name }}</p>
         <p class="py-3 mb-0">
           <i class="material-icons md-48 font-orange">restaurant</i>
         </p>
-        <button type="button" class="btn px-5 bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase" data-dismiss="modal">Continuar</button>
+        <p><button type="button" class="btn px-5 bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase" data-dismiss="modal" (click)="exchange(menuSelected)">Confirmar</button></p>
+        <p><button type="button" class="btn px-5 bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase" data-dismiss="modal" (click)="closeModal()">Cancelar</button></p>
+      </div>
+      <div class="modal-body text-center" *ngIf="!menuSelected">
+        <p class="py-0 my-0 font-gray">{{ errorMessage }}</p>
+        <button type="button" class="btn px-5 bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase" data-dismiss="modal" (click)="closeModal()">Cerrar</button>
       </div>
     </div>
   </div>
 </div>
+<div class="modal-backdrop fade show" *ngIf="modalIsOpen"></div>
