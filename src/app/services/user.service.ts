@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { TicketPurchaseByMonth, TicketsSold } from '../models'
+import { TicketPurchaseByMonth, TicketsSold, User } from '../models'
 
 @Injectable()
 export class UserService {
@@ -11,7 +11,7 @@ export class UserService {
   }
 
   getOne(id: number) {
-    return this.http.get('/user/' + id)
+    return this.http.get<User>('/user/' + id)
   }
 
   storeObject(request: any) {

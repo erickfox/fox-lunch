@@ -18,13 +18,15 @@ export class ProfileSalesComponent implements OnInit {
     this.getTicketsSold()
   }
 
-  getTicketsSold() {
-    this.userService.ticketsSold(this.currentUser.id).pipe().subscribe(
-      data => {
-        this.ticketsSold = data
-      },
-      error => {
-        console.log(error)
-      })
+  getTicketsSold(): void {
+    this.userService.ticketsSold(this.currentUser.id)
+      .pipe()
+      .subscribe(
+        data => {
+          this.ticketsSold = data
+        },
+        error => {
+          console.log(error)
+        })
   }
 }

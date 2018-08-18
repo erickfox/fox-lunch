@@ -30,80 +30,90 @@ export class HomeComponent implements OnInit {
     this.getAvailableTickets()
   }
 
-  getAvailableTickets() {
-    this.saleService.available().toPromise().then(data => {
-      const sortData = data.filter(item => item.status === 3)
-      this.availableTickets = sortData.length
-    }).catch(error => {
-      console.log('saleService => ', error)
-    })
+  getAvailableTickets(): void {
+    this.saleService.available()
+      .pipe()
+      .subscribe(
+        data => {
+          const sortData = data.filter(item => item.status === 3)
+          this.availableTickets = sortData.length
+        },
+        error => {
+          console.log('saleService => ', error)
+        })
   }
 
-  exchangeUser() {
+  exchangeUser(): void {
     const params = {
       user_id: this.currentUser.id,
       date: this.parseDate(new Date())
     }
 
-    this.exchangeService.exchangeUser(params).pipe().subscribe(
-      data => {
-        this.reservedMenuView = true
-        this.exchange = {
-          id: data.id,
-          menu: {
-            name: data.Menu.name,
-            description: data.Menu.description,
-            garnish: data.Menu.garnish.split(',')
-          }
-        }
-      },
-      error => {
-        console.log('exchangeUser => ', error)
-        const currentTime = new Date().getHours()
-        this.toReserveView = currentTime < 9 ? true : false
-        this.salesView = true
-      })
-  }
-
-  cancelExchage() {
-    if (this.exchange) {
-      const params = {
-        exchange_id: this.exchange.id
-      }
-
-      this.exchangeService.cancel(params).pipe().subscribe(
+    this.exchangeService.exchangeUser(params)
+      .pipe()
+      .subscribe(
         data => {
-          console.log('Canje cancelado => ', data)
-          window.location.reload()
+          this.reservedMenuView = true
+          this.exchange = {
+            id: data.id,
+            menu: {
+              name: data.Menu.name,
+              description: data.Menu.description,
+              garnish: data.Menu.garnish.split(',')
+            }
+          }
         },
         error => {
-          console.log('cancelExchage => ', error)
+          console.log('exchangeUser => ', error)
+          const currentTime = new Date().getHours()
+          this.toReserveView = currentTime < 9 ? true : false
+          this.salesView = true
         })
-    }
   }
 
-  sellTicket() {
+  cancelExchage(): void {
     if (this.exchange) {
       const params = {
         exchange_id: this.exchange.id
       }
 
-      this.saleService.sell(params).pipe().subscribe(
-        data => {
-          console.log('Ticket vendido => ', data)
-          window.location.reload()
-        }, error => {
-          console.log('sellTicket => ', error.response.data.message)
-        })
+      this.exchangeService.cancel(params)
+        .pipe()
+        .subscribe(
+          data => {
+            console.log('Canje cancelado => ', data)
+            window.location.reload()
+          },
+          error => {
+            console.log('cancelExchage => ', error)
+          })
     }
   }
 
-  parseDate(date) {
+  sellTicket(): void {
+    if (this.exchange) {
+      const params = {
+        exchange_id: this.exchange.id
+      }
+
+      this.saleService.sell(params)
+        .pipe()
+        .subscribe(
+          data => {
+            console.log('Ticket vendido => ', data)
+            window.location.reload()
+          }, error => {
+            console.log('sellTicket => ', error.response.data.message)
+          })
+    }
+  }
+
+  parseDate(date): string {
     const typeDate = new Date(date)
     return typeDate.getFullYear() + '-' + (typeDate.getMonth() + 1) + '-' + typeDate.getDate()
   }
 
-  startTimer() {
+  startTimer(): void {
     const limitDateTime = new Date(this.countDownTimer).getTime()
 
     setInterval(() => {

@@ -18,7 +18,7 @@ export class ProfilePurchaseComponent implements OnInit {
     this.getPurchaseByMonth()
   }
 
-  getPurchaseByMonth() {
+  getPurchaseByMonth(): void {
     this.userService.purchaseByMonth(this.currentUser.id).pipe().subscribe(
       data => {
         this.purchaseByMonth = data.filter(item => item.tickets.length > 0)

@@ -33,12 +33,12 @@
 </div>
 
 <!-- Modal -->
-<div class="modal mx-2 fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" [ngStyle]="{'display': modalIsOpen ? 'block' : 'none', 'opacity': 1}">
+<div class="modal mx-2 fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" [ngStyle]="{'display': modalIsOpen ? 'block' : 'none', 'opacity': 1}">
   <div class="modal-dialog-centered" role="document">
     <div class="modal-content shadow-medium">
       <div class="modal-body text-center" *ngIf="menuSelected">
         <p class="h2 font-weight-light">¡Buen provecho!</p>
-        <p class="py-0 my-0 font-gray">Haz canjeado tu ticket para</p>
+        <p class="py-0 my-0 font-gray">Canjearás tu ticket para</p>
         <p class="py-1 my-0 font-orange h5">{{ menuSelected.date | date }}</p>
         <p class="py-0 my-0 font-gray">elegiste el {{ menuSelected.name }}</p>
         <p class="py-3 mb-0">

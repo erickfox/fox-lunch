@@ -17,61 +17,67 @@ export class MenuComponent implements OnInit {
   errorMessage: string = ''
 
   constructor(private router: Router, private menuService: MenuService, private exchangeService: ExchangeService) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
   }
 
   ngOnInit() {
     this.getByDate(this.parseDate(this.currentDate))
   }
 
-  private openModal(menu: Menu) {
+  openModal(menu: Menu): void {
     this.menuSelected = menu
     this.modalIsOpen = true
   }
 
-  private closeModal() {
+  closeModal(): void {
     this.menuSelected = null
     this.modalIsOpen = false
   }
 
-  private parseDate(date) {
+  parseDate(date): string {
     const typeDate = new Date(date)
     return typeDate.getFullYear() + '-' + (typeDate.getMonth() + 1) + '-' + typeDate.getDate()
   }
 
-  private getByDate(date: string) {
-    this.menuService.getByDate(date).pipe().subscribe(
-      data => {
-        data.forEach(element => {
-          let menuItem: object = {}
-          menuItem = {
-            id: element.id,
-            date: element.date,
-            name: element.name,
-            description: element.description,
-            garnish: element.garnish.split(',')
-          }
+  getByDate(date: string): void {
+    this.menuService.getByDate(date)
+      .pipe()
+      .subscribe(
+        data => {
+          data.forEach(element => {
+            let menuItem: object = {}
+            menuItem = {
+              id: element.id,
+              date: element.date,
+              name: element.name,
+              description: element.description,
+              garnish: element.garnish.split(',')
+            }
 
-          this.menuList.push(menuItem)
-        });
-      }, error => {
-        console.log('getByDate => ', error)
-      })
+            this.menuList.push(menuItem)
+          });
+        },
+        error => {
+          console.log('getByDate => ', error)
+        })
   }
 
-  private exchange(menu) {
+  exchange(menu): void {
     const params = {
       user_id: this.currentUser.id,
       menu_id: menu.id,
       date: menu.date
     }
 
-    this.exchangeService.exchange(params).pipe().subscribe(
-      data => {
-        this.closeModal()
-      }, error => {
-        this.menuSelected = null
-        this.errorMessage = error
-      })
+    this.exchangeService.exchange(params)
+      .pipe()
+      .subscribe(
+        data => {
+          this.closeModal()
+        },
+        error => {
+          this.menuSelected = null
+          this.errorMessage = error
+        })
   }
 }
