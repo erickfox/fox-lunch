@@ -53,7 +53,6 @@ export class HomeComponent implements OnInit {
       .pipe()
       .subscribe(
         data => {
-          console.log(data)
           this.reservedMenuView = true
           this.exchange = {
             id: data.id,
