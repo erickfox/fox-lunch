@@ -1,36 +1,40 @@
-<div class="row align-items-center">
-  <div class="col-12 mt-5 px-3 py-4 clearfix border-bottom">
-    <img [src]="currentUser.picture" class="rounded-circle mr-3 bg-light float-left" width="75" height="75">
-    <div class="float-left">
-      <p class=" m-0 pt-2 h6">ID: {{ currentUser.id }}</p>
-      <p class=" m-0 py-1 h6">{{ currentUser.name }}</p>
-      <p class=" m-0 py-0 h6">Te quedan
-        <span class="font-orange font-weight-bold">{{ tickets }}</span> tickets.</p>
+<div class="container">
+  <div class="row align-items-center">
+    <div class="col-12 mt-5 px-3 py-4 clearfix border-bottom">
+      <img [src]="currentUser.picture" class="rounded-circle mr-3 bg-light float-left" width="75" height="75">
+      <div class="float-left">
+        <p class=" m-0 pt-2 h6">ID: {{ currentUser.id }}</p>
+        <p class=" m-0 py-1 h6">{{ currentUser.name }}</p>
+        <p class=" m-0 py-0 h6">Te quedan
+          <span class="font-orange font-weight-bold">{{ tickets }}</span> tickets.</p>
+      </div>
     </div>
-  </div>
-  <div class="col-12 py-4 px-3 clearfix border-bottom">
-    <p class="h6 text-center font-orange">Para recibir tu almuerzo, muestra tu gafete o este código QR</p>
-    <img class="rounded bg-light mx-auto d-block" width="200" height="200">
-  </div>
-  <div class="col-12 p-0 clearfix border-bottom">
-    <button class="btn btn-md btn-light float-right bg_clear border-0">
-      <i class="material-icons pt-2">keyboard_arrow_right</i>
-    </button>
-    <div class=" date-box" routerLink="/profile-purchase">
-      <p class="h6 m-0 pl-3 py-2 float-lef w-100">
-        <i class="material-icons md-18 align-middle mr-2" style="margin-top:-4px">account_balance_wallet</i> Historial de compras</p>
+    <div class="col-12 py-4 px-3 clearfix border-bottom">
+      <p class="h6 text-center font-orange">Para recibir tu almuerzo, muestra tu gafete o este código QR</p>
+      <img class="rounded bg-light mx-auto d-block" width="200" height="200">
     </div>
-  </div>
-  <div class="col-12 p-0 clearfix border-bottom">
-    <button class="btn btn-md btn-light float-right bg_clear border-0">
-      <i class="material-icons pt-2">keyboard_arrow_right</i>
-    </button>
-    <div class=" date-box" routerLink="/profile-sales">
-      <p class="h6 m-0 pl-3 py-2 float-lef w-100">
-        <i class="material-icons md-18 align-middle mr-2" style="margin-top:-4px">local_offer</i> Mis tickets en venta</p>
+    <div class="col-12 p-0 clearfix border-bottom">
+      <button class="btn btn-md btn-light float-right bg_clear border-0">
+        <i class="material-icons pt-2">keyboard_arrow_right</i>
+      </button>
+      <div class=" date-box" routerLink="/profile-purchase">
+        <p class="h6 m-0 pl-3 py-2 float-lef w-100">
+          <i class="material-icons md-18 align-middle mr-2" style="margin-top:-4px">account_balance_wallet</i> Historial
+          de compras</p>
+      </div>
     </div>
-  </div>
-  <div class="col-12 clearfix">
-    <button routerLink="/login" class="btn btn-md btn-block bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase my-5" type="submit">cerrar sesión</button>
+    <div class="col-12 p-0 clearfix border-bottom">
+      <button class="btn btn-md btn-light float-right bg_clear border-0">
+        <i class="material-icons pt-2">keyboard_arrow_right</i>
+      </button>
+      <div class=" date-box" routerLink="/profile-sales">
+        <p class="h6 m-0 pl-3 py-2 float-lef w-100">
+          <i class="material-icons md-18 align-middle mr-2" style="margin-top:-4px">local_offer</i> Mis tickets en venta</p>
+      </div>
+    </div>
+    <div class="col-12 clearfix">
+      <button routerLink="/login" class="btn btn-md btn-block bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase my-5"
+        type="submit">cerrar sesión</button>
+    </div>
   </div>
 </div>
