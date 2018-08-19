@@ -75,11 +75,13 @@ export class MenuComponent implements OnInit {
       .subscribe(
         data => {
           this.closeModal()
+          this.showAlert('success', 'Tu menú seleccionado ha sido reservado')
           this.router.navigate(['/'])
         },
         error => {
           this.menuSelected = null
-          this.errorMessage = error
+          this.closeModal()
+          this.showAlert('error', error)
         })
   }
 

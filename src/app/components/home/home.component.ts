@@ -82,11 +82,11 @@ export class HomeComponent implements OnInit {
         .pipe()
         .subscribe(
           data => {
-            console.log('Canje cancelado => ', data)
+            this.showAlert('success', 'Tu canje ha sido cancelado')
             window.location.reload()
           },
           error => {
-            console.log('cancelExchage => ', error)
+            this.showAlert('error', error)
           })
     }
   }
@@ -101,10 +101,10 @@ export class HomeComponent implements OnInit {
         .pipe()
         .subscribe(
           data => {
-            console.log('Ticket vendido => ', data)
+            this.showAlert('success', 'Tu ticket se ha puesto en venta')
             window.location.reload()
           }, error => {
-            console.log('sellTicket => ', error.response.data.message)
+            this.showAlert('error', error)
           })
     }
   }

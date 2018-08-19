@@ -74,10 +74,11 @@ export class TicketsSaleComponent implements OnInit {
       .subscribe(
         data => {
           this.closeModal()
+          this.showAlert('success', 'Tu canje ha sido realizado')
           this.router.navigate(['/'])
         },
         error => {
-          console.log('purchase => ', error)
+          this.showAlert('error', error)
         })
   }
 

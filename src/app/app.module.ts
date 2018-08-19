@@ -83,7 +83,7 @@ const appRoutes: Routes = [
     NotifierModule.withConfig({
       position: {
         horizontal: {
-          position: 'left'
+          position: 'middle'
         }
       },
       behaviour: {
