@@ -4,6 +4,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core'
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
+
 export class AppComponent {
   @ViewChild('navBar') navBar:ElementRef
 
@@ -11,11 +12,11 @@ export class AppComponent {
     
   }
 
-  openNav() {
+  openNav(): void {
     this.navBar.nativeElement.style.width = '280px';
   }
 
-  closeNav() {
+  closeNav(): void {
     this.navBar.nativeElement.style.width = '0';
   }
 }
