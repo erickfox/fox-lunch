@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { AvailableTickets, User } from '../../models'
 import { SaleService, UserService, PurchaseService } from '../../services'
+import { NotifierService } from 'angular-notifier'
 
 @Component({
   selector: 'app-tickets-sale',
@@ -16,7 +17,7 @@ export class TicketsSaleComponent implements OnInit {
   typeSale: number = 2
   exchange: AvailableTickets = null
 
-  constructor(private router: Router, private saleService: SaleService, private userService: UserService, private purchaseService: PurchaseService) {
+  constructor(private router: Router, private saleService: SaleService, private userService: UserService, private purchaseService: PurchaseService, private notifierService: NotifierService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
   }
 
@@ -78,5 +79,10 @@ export class TicketsSaleComponent implements OnInit {
         error => {
           console.log('purchase => ', error)
         })
+  }
+
+  showAlert(type: string, message: string): void {
+    this.notifierService.hideAll()
+    this.notifierService.notify(type, message)
   }
 }

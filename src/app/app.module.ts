@@ -20,6 +20,9 @@ import { JwtInterceptor, ErrorInterceptor, BaseUrlInterceptor } from './helpers'
 import { AuthGuard } from './guards'
 import { AuthenticationService, ExchangeService, MenuService, PurchaseService, SaleService, UserService } from './services'
 
+// Libraries
+import { NotifierModule } from 'angular-notifier';
+
 const appRoutes: Routes = [
   {
     path: 'login',
@@ -77,6 +80,17 @@ const appRoutes: Routes = [
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    NotifierModule.withConfig({
+      position: {
+        horizontal: {
+          position: 'left'
+        }
+      },
+      behaviour: {
+        autoHide: 3000,
+        showDismissButton: false
+      }
+    }),
     RouterModule.forRoot(appRoutes, { onSameUrlNavigation: 'reload' })
   ],
   exports: [RouterModule],

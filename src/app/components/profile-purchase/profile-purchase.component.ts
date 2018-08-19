@@ -24,7 +24,7 @@ export class ProfilePurchaseComponent implements OnInit {
         this.purchaseByMonth = data.filter(item => item.tickets.length > 0)
       },
       error => {
-        console.log(error)
+        console.log('getPurchaseByMonth => ', error)
       })
   }
 }

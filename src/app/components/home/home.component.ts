@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { ExchangeService, SaleService, AuthenticationService } from '../../services'
+import { ExchangeService, SaleService } from '../../services'
+import { NotifierService } from 'angular-notifier';
 import { User } from '../../models'
 
 @Component({
@@ -20,7 +21,7 @@ export class HomeComponent implements OnInit {
   seconds = 0
   currentUser: User
 
-  constructor(private exchangeService: ExchangeService, private saleService: SaleService, private authService: AuthenticationService) {
+  constructor(private exchangeService: ExchangeService, private saleService: SaleService, private notifierService: NotifierService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
@@ -128,5 +129,10 @@ export class HomeComponent implements OnInit {
         this.toReserveView = false
       }
     }, 1000)
+  }
+
+  showAlert(type: string, message: string): void {
+    this.notifierService.hideAll();
+    this.notifierService.notify(type, message);
   }
 }

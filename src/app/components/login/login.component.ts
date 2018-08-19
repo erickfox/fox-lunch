@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router, ActivatedRoute } from '@angular/router'
 import { AuthenticationService } from '../../services'
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-login',
@@ -13,9 +14,12 @@ export class LoginComponent implements OnInit {
   loading = false
   submitted = false
 
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, private authenticationService: AuthenticationService) {
-
-  }
+  constructor(
+    private formBuilder: FormBuilder, 
+    private route: ActivatedRoute, 
+    private router: Router, 
+    private authenticationService: AuthenticationService, 
+    private notifierService: NotifierService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -35,7 +39,8 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
 
     if (this.loginForm.invalid) {
-      return;
+      this.showAlert('error', 'Debes ingresar valores válidos')
+      return
     }
 
     this.loading = true;
@@ -43,11 +48,17 @@ export class LoginComponent implements OnInit {
       .pipe()
       .subscribe(
         data => {
+          this.showAlert('success', 'Bienvenido: '+ data.name)
           this.router.navigate([this.returnUrl]);
         },
         error => {
-          console.log('Login => ', error)
+          this.showAlert('error', 'Verifica tus credenciales')
           this.loading = false;
         })
+  }
+
+  showAlert(type: string, message: string): void {
+    this.notifierService.hideAll();
+    this.notifierService.notify(type, message);
   }
 }

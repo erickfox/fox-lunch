@@ -26,7 +26,7 @@ export class ProfileSalesComponent implements OnInit {
           this.ticketsSold = data
         },
         error => {
-          console.log(error)
+          console.log('getTicketsSold => ', error)
         })
   }
 }

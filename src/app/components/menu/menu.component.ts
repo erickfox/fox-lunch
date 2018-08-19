@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { User, Menu } from '../../models'
 import { MenuService, ExchangeService } from '../../services'
+import { NotifierService } from 'angular-notifier'
 
 @Component({
   selector: 'app-menu',
@@ -16,7 +17,7 @@ export class MenuComponent implements OnInit {
   modalIsOpen: boolean = false
   errorMessage: string = ''
 
-  constructor(private router: Router, private menuService: MenuService, private exchangeService: ExchangeService) {
+  constructor(private router: Router, private menuService: MenuService, private exchangeService: ExchangeService, private notifierService: NotifierService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
   }
 
@@ -55,7 +56,7 @@ export class MenuComponent implements OnInit {
             }
 
             this.menuList.push(menuItem)
-          });
+          })
         },
         error => {
           console.log('getByDate => ', error)
@@ -80,5 +81,10 @@ export class MenuComponent implements OnInit {
           this.menuSelected = null
           this.errorMessage = error
         })
+  }
+
+  showAlert(type: string, message: string): void {
+    this.notifierService.hideAll()
+    this.notifierService.notify(type, message)
   }
 }
