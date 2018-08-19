@@ -1,4 +1,16 @@
-<div #navBar id="mySidenav" class="sidenav">
+<!-- As a heading -->
+<nav class="navbar py-1 fixed-top bg_orange" *ngIf="sessionActive">
+    <span routerLink="" class="navbar-text text-white font-roboto font-weight-bold letspc-5">
+      Inicio
+    </span>
+    <button (click)="openNav()" class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon">
+        <img height="100%" src="../assets/img/menu_icon.jpg" />
+      </span>
+    </button>
+  </nav>
+
+<div #sideBar id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">
     <i class="material-icons mi-dark">close</i>
   </a>
@@ -7,17 +19,5 @@
   <a (click)="closeNav()" routerLink="ticket-sale" class="font-roboto font-gray font-weight-bold">En venta</a>
   <a (click)="closeNav()" routerLink="profile" class="font-roboto font-gray font-weight-bold">Perfil</a>
 </div>
-
-<!-- As a heading -->
-<nav class="navbar py-1 fixed-top bg_orange">
-  <span routerLink="" class="navbar-text text-white font-roboto font-weight-bold letspc-5">
-    Inicio
-  </span>
-  <button (click)="openNav()" class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon">
-      <img height="100%" src="../assets/img/menu_icon.jpg" />
-    </span>
-  </button>
-</nav>
 
 <router-outlet></router-outlet>
