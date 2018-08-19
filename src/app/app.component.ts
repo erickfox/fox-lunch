@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, AfterContentChecked  } from '@angular/core'
+import { Component, ElementRef, ViewChild, AfterContentChecked } from '@angular/core'
 
 @Component({
   selector: 'app-root',
@@ -14,6 +14,8 @@ export class AppComponent implements AfterContentChecked {
   ngAfterContentChecked() {
     if (localStorage.getItem('currentUser')) {
       this.sessionActive = true
+    } else {
+      this.sessionActive = false
     }
   }
 
