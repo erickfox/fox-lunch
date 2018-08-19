@@ -22,6 +22,7 @@ import { AuthenticationService, ExchangeService, MenuService, PurchaseService, S
 
 // Libraries
 import { NotifierModule } from 'angular-notifier';
+import { QRCodeModule } from 'angularx-qrcode';
 
 const appRoutes: Routes = [
   {
@@ -80,6 +81,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    QRCodeModule,
     NotifierModule.withConfig({
       position: {
         horizontal: {

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="currentUser">
   <div class="row align-items-center">
     <div class="col-12 mt-5 px-3 py-4 clearfix border-bottom">
       <img [src]="currentUser.picture" class="rounded-circle mr-3 bg-light float-left" width="75" height="75">
@@ -6,12 +6,12 @@
         <p class=" m-0 pt-2 h6">ID: {{ currentUser.id }}</p>
         <p class=" m-0 py-1 h6">{{ currentUser.name }}</p>
         <p class=" m-0 py-0 h6">Te quedan
-          <span class="font-orange font-weight-bold">{{ tickets }}</span> tickets.</p>
+          <span class="font-orange font-weight-bold">{{ currentUser.tickets }}</span> tickets.</p>
       </div>
     </div>
     <div class="col-12 py-4 px-3 clearfix border-bottom">
       <p class="h6 text-center font-orange">Para recibir tu almuerzo, muestra tu gafete o este código QR</p>
-      <img class="rounded bg-light mx-auto d-block" width="200" height="200">
+      <qrcode [qrdata]="qrData" [size]="200" [level]="'M'"></qrcode>
     </div>
     <div class="col-12 p-0 clearfix border-bottom">
       <button class="btn btn-md btn-light float-right bg_clear border-0">
