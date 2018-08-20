@@ -2,7 +2,9 @@
   <div class="row align-items-center">
     <div class="col-12 bg-light pt-5 px-0">
       <div class="text-center mt-2 mb-3 date-box">
-          <p class="h6 bg-light text-center text-uppercase m-0 py-2 d-table w-100"> <i class="material-icons md-18 align-middle" style="margin-top:-4px; margin-right:5px">today</i>  Septiembre 20. 2018  <i class="material-icons md-32 align-middle font-orange" style="margin-top:-4px; margin-left:10px">arrow_drop_down</i></p>
+        <p class="h6 bg-light text-center text-uppercase m-0 py-2 d-table w-100"> <i class="material-icons md-18 align-middle"
+            style="margin-top:-4px; margin-right:5px">today</i> Septiembre 20. 2018 <i class="material-icons md-32 align-middle font-orange"
+            style="margin-top:-4px; margin-left:10px">arrow_drop_down</i></p>
       </div>
     </div>
     <div class="col-12 pt-4 text-center">
@@ -38,10 +40,13 @@
           <p class="py-3 mb-0">
             <i class="material-icons md-48 font-orange">restaurant</i>
           </p>
-          <p><button type="button" class="btn px-5 bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase"
-              data-dismiss="modal" (click)="exchange(menuSelected)">Confirmar</button></p>
-          <p><button type="button" class="btn px-5 bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase"
-              data-dismiss="modal" (click)="closeModal()">Cancelar</button></p>
+          <p>
+            <button type="button" class="btn px-5 bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase" data-dismiss="modal"
+              (click)="exchange(menuSelected)">Confirmar</button>
+          </p>
+          <p>
+            <span class="font-orange btn btn-sm btn-link" (click)="closeModal()">Cancelar</span>
+          </p>
         </div>
       </div>
     </div>
