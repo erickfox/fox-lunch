@@ -7,4 +7,5 @@ export class User {
   tickets: number;
   lastPurchase: string;
   token: string;
+  firstLogin: boolean
 }

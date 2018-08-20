@@ -15,10 +15,10 @@ export class LoginComponent implements OnInit {
   submitted = false
 
   constructor(
-    private formBuilder: FormBuilder, 
-    private route: ActivatedRoute, 
-    private router: Router, 
-    private authenticationService: AuthenticationService, 
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private authenticationService: AuthenticationService,
     private notifierService: NotifierService) { }
 
   ngOnInit() {
@@ -48,8 +48,12 @@ export class LoginComponent implements OnInit {
       .pipe()
       .subscribe(
         data => {
-          this.showAlert('success', 'Bienvenido :)')
-          this.router.navigate([this.returnUrl]);
+          if (data.firstLogin)
+            this.router.navigate(['/first-login']);
+          else {
+            this.showAlert('success', 'Bienvenido :)')
+            this.router.navigate([this.returnUrl]);
+          }
         },
         error => {
           this.showAlert('error', 'Verifica tus credenciales')

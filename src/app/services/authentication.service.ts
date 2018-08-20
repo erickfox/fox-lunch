@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { Injectable } from '@angular/core'
+import { HttpClient } from '@angular/common/http'
+import { map } from 'rxjs/operators'
 import { User } from '../models'
 
 @Injectable()
@@ -11,14 +11,18 @@ export class AuthenticationService {
     return this.http.post<User>('/login', { email: email, password: password })
       .pipe(map(user => {
         if (user && user.token) {
-          localStorage.setItem('currentUser', JSON.stringify(user));
+          if (user.firstLogin) {
+            localStorage.setItem('tempUser', JSON.stringify(user))
+          } else {
+            localStorage.setItem('currentUser', JSON.stringify(user))
+          }
         }
 
-        return user;
-      }));
+        return user
+      }))
   }
 
   logout() {
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('currentUser')
   }
 }
