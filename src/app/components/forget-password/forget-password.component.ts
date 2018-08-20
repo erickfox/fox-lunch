@@ -3,10 +3,10 @@ import { Router } from '@angular/router'
 import { NotifierService } from 'angular-notifier';
 
 @Component({
-  selector: 'app-first-login',
-  templateUrl: './first-login.component.html',
+  selector: 'app-forget-password',
+  templateUrl: './forget-password.component.html',
 })
-export class FirstLoginComponent implements OnInit {
+export class ForgetPasswordComponent implements OnInit {
   constructor(
     private router: Router, 
     private notifierService: NotifierService) { }

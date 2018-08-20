@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           if (data.firstLogin)
-            this.router.navigate(['/first-login']);
+            this.router.navigate(['/reset-password']);
           else {
             this.showAlert('success', 'Bienvenido :)')
             this.router.navigate([this.returnUrl]);

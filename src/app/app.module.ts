@@ -8,7 +8,7 @@ import { RouterModule, Routes } from '@angular/router'
 // Components
 import { AppComponent } from './app.component'
 import { LoginComponent } from './components/login/login.component'
-import { FirstLoginComponent } from './components/first-login/first-login.component'
+import { ForgetPasswordComponent } from './components/forget-password/forget-password.component'
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component'
 import { HomeComponent } from './components/home/home.component'
 import { MenuComponent } from './components/menu/menu.component'
@@ -32,12 +32,12 @@ const appRoutes: Routes = [
     component: LoginComponent
   },
   {
-    path: 'first-login',
-    component: FirstLoginComponent
-  },
-  {
     path: 'reset-password',
     component: ResetPasswordComponent
+  },
+  {
+    path: 'forget-password',
+    component: ForgetPasswordComponent
   },
   {
     path: '',
@@ -79,7 +79,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    FirstLoginComponent,
+    ForgetPasswordComponent,
     ResetPasswordComponent,
     HomeComponent,
     MenuComponent,
