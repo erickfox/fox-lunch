@@ -32,10 +32,10 @@ export class UserService {
   }
 
   purchaseByMonth(id: number) {
-    return this.http.get<[TicketPurchaseByMonth]>('/user/'+ id + '/purchasebymonth')
+    return this.http.get<[TicketPurchaseByMonth]>('/user/'+ id + '/purchase/bymonth')
   }
 
   ticketsSold(id: number) {
-    return this.http.get<[TicketsSold]>('/user/'+ id + '/ticketssold')
+    return this.http.get<[TicketsSold]>('/user/'+ id + '/tickets/sold')
   }
 }
