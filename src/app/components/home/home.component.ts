@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
         },
         error => {
           console.log('exchangeUser => ', error)
-          const currentTime = new Date().getUTCHours()
+          const currentTime = new Date().getHours()
           this.toReserveView = currentTime < 9 ? true : false
           this.salesView = true
         })
