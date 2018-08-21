@@ -9,7 +9,7 @@ export class BaseUrlInterceptor implements HttpInterceptor {
     req = req.clone({
       url: url + req.url
     });
-    
+
     return next.handle(req);
   }
 }

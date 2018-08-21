@@ -26,7 +26,7 @@
           <p class="py-3 h6 m-0 text-uppercase font-weight-bold">{{ item.month }}</p>
         </div>
       </div>
-      <div class="col-12 pt-3 pr-3 pb-0 pl-3" *ngFor="let ticket of item.tickets">
+      <div class="col-12 pt-3 pr-3 pb-3 pl-3" *ngFor="let ticket of item.tickets">
         <div class=" rounded border p-2">
           <p class="text-right m-0 font-weight-light">{{ ticket.updatedAt | date }}</p>
           <p class="h4 my-0 p-0 font-weight-light text-uppercase">{{ ticket.quantity }} Tickets</p>

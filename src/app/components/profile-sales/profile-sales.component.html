@@ -29,7 +29,7 @@
           <p class="h6 mt-3 mb-2  pt-0 pr-3 pl-3 pb-0">Vendido a
             <span class="font-orange">{{ item.UserPurchase.name }}</span>
           </p>
-          <p class="h6 font-weight-light font-gray  pt-0 pr-3 pl-3 pb-2">Q. 12</p>
+          <p class="h6 font-weight-light font-gray  pt-0 pr-3 pl-3 pb-2" *ngIf="item.typeSale == 1">Q. 12</p>
           <p class="h6 bg-light text-center text-uppercase m-0 py-2 d-table w-100" *ngIf="item.typeSale == 1">
             <i class="material-icons md-18 align-middle" style="margin-top:-4px">attach_money</i>Efectivo
           </p>
