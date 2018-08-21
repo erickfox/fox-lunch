@@ -23,12 +23,19 @@
 
   <!-- FOX LUNCH CSS -->
   <link href="./assets/css/foxlunch.css" rel="stylesheet" />
-  <link href="../node_modules/angular-notifier/styles.css" rel="stylesheet" />
 </head>
 
 <body>
+  <!-- LOADER PARA CARGAS -->
   <div class="loader">
       <i class="fa fa-circle-o-notch fa-spin" style="font-size:32px"></i>
+  </div>
+  <!-- FALLBACKS CONTAINER -->
+  <div class="fallback_box">
+      <div class="align-self-center w-100 p-3 text-center">
+        <h5 class="font-regular">Todavía no se han publicado menús para el día seleccionado.</h5>
+        <p class="font-light">Consulta más tarde</p>
+      </div>
   </div>
   <app-root></app-root>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
