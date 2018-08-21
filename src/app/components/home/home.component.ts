@@ -70,6 +70,7 @@ export class HomeComponent implements OnInit {
           const currentTime = new Date().getHours()
           this.toReserveView = currentTime < 19 ? true : false
           this.salesView = true
+          this.reservedMenuView = false
         })
   }
 
@@ -84,7 +85,7 @@ export class HomeComponent implements OnInit {
         .subscribe(
           data => {
             this.showAlert('success', 'Tu canje ha sido cancelado')
-            this.router.navigate([''])
+            this.onRefresh()
           },
           error => {
             this.showAlert('error', error)
@@ -103,11 +104,16 @@ export class HomeComponent implements OnInit {
         .subscribe(
           data => {
             this.showAlert('success', 'Tu ticket se ha puesto en venta')
-            this.router.navigate(['/'])
+            this.onRefresh()
           }, error => {
             this.showAlert('error', error)
           })
     }
+  }
+
+  onRefresh() {
+    this.exchangeUser()
+    this.getAvailableTickets()
   }
 
   parseDate(date): string {
