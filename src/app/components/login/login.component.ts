@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router, ActivatedRoute } from '@angular/router'
 import { AuthenticationService } from '../../services'
-import { NotifierService } from 'angular-notifier';
+import { NotifierService } from 'angular-notifier'
+import { User } from '../../models'
 
 @Component({
   selector: 'app-login',
@@ -11,8 +12,8 @@ import { NotifierService } from 'angular-notifier';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup
   returnUrl: string
-  loading = false
-  submitted = false
+  loading: boolean = false
+  submitted: boolean = false
 
   constructor(
     private formBuilder: FormBuilder,
@@ -48,9 +49,9 @@ export class LoginComponent implements OnInit {
       .pipe()
       .subscribe(
         data => {
-          if (data.firstLogin)
+          if (data.firstLogin) {
             this.router.navigate(['/reset-password']);
-          else {
+          } else {
             this.showAlert('success', 'Bienvenido :)')
             this.router.navigate([this.returnUrl]);
           }
