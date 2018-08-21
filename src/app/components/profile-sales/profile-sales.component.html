@@ -4,31 +4,40 @@
       <button class="btn btn-md btn-light float-left bg_clear border-0" routerLink="/profile">
         <i class="material-icons pt-2">keyboard_arrow_left</i>
       </button>
-      <div class=" date-box" routerLink="/profile">
+      <div class="head-box" routerLink="/profile">
         <p class=" m-0 py-2 h6"> Mis tickets en venta </p>
       </div>
     </div>
   </div>
 
-  <!-- HISTORIAL DE VENTAS -->
-  <div class="row">
-    <div class="col-12 pt-3 pr-3 pb-0 pl-3" *ngFor="let item of ticketsSold">
-      <div class="rounded border p-0">
-        <p class="m-0 font-weight-bold clearfix pt-3 pr-3 pl-3 pb-0">
-          <span class="float-left">{{ item.Menu.name }}</span>
-          <span class="float-right">{{ item.updatedAt | date }}</span>
-        </p>
-        <p class="h6 mt-3 mb-2  pt-0 pr-3 pl-3 pb-0">Vendido a
-          <span class="font-orange">{{ item.UserPurchase.name }}</span>
-        </p>
-        <p class="h6 font-weight-light font-gray  pt-0 pr-3 pl-3 pb-2">Q. 12</p>
-        <p class="h6 bg-light text-center text-uppercase m-0 py-2 d-table w-100" *ngIf="item.typeSale == 1">
-          <i class="material-icons md-18 align-middle" style="margin-top:-4px">attach_money</i>Efectivo
-        </p>
-        <p class="h6 bg-light text-center text-uppercase m-0 py-2 d-table w-100" *ngIf="item.typeSale == 2">
-          <i class="material-icons md-18 align-middle" style="margin-top:-4px">swap_horiz</i>Intercambio de ticket
-        </p>
-      </div>
+  <!-- FALLBACK -->
+  <div class="fallback_box" *ngIf="ticketsSold.length == 0">
+    <div class="align-self-center w-100 p-3 text-center" style="margin-top: -115px;">
+      <h5 class=“font-regular”>Todavía no has intercambiado ningún ticket</h5>
     </div>
   </div>
+
+  <!-- HISTORIAL DE VENTAS -->
+  <ng-container *ngIf="ticketsSold.length > 0">
+    <div class="row">
+      <div class="col-12 pt-3 pr-3 pb-0 pl-3" *ngFor="let item of ticketsSold">
+        <div class="rounded border p-0">
+          <p class="m-0 font-weight-bold clearfix pt-3 pr-3 pl-3 pb-0">
+            <span class="float-left">{{ item.Menu.name }}</span>
+            <span class="float-right">{{ item.updatedAt | date }}</span>
+          </p>
+          <p class="h6 mt-3 mb-2  pt-0 pr-3 pl-3 pb-0">Vendido a
+            <span class="font-orange">{{ item.UserPurchase.name }}</span>
+          </p>
+          <p class="h6 font-weight-light font-gray  pt-0 pr-3 pl-3 pb-2">Q. 12</p>
+          <p class="h6 bg-light text-center text-uppercase m-0 py-2 d-table w-100" *ngIf="item.typeSale == 1">
+            <i class="material-icons md-18 align-middle" style="margin-top:-4px">attach_money</i>Efectivo
+          </p>
+          <p class="h6 bg-light text-center text-uppercase m-0 py-2 d-table w-100" *ngIf="item.typeSale == 2">
+            <i class="material-icons md-18 align-middle" style="margin-top:-4px">swap_horiz</i>Intercambio de ticket
+          </p>
+        </div>
+      </div>
+    </div>
+  </ng-container>
 </div>

@@ -5,60 +5,70 @@
     </div>
   </div>
 
-  <!-- ROW POR MENU-->
-  <div class="row">
-    <div class="col-12" *ngFor="let item of availableTickets">
-      <ul class="list-group mb-3" *ngIf="item.status === 3">
-        <li class="list-group-item border-bottom-0">
-          <h6 class="pb-0 pt-1 font-roboto font-weight-bold letspc-5 text-uppercase font-orange">{{ item.Menu.name }} - {{
-            item.Menu.description }}</h6>
-          <p class="m-0">Dueño: {{ item.User.name }}</p>
-        </li>
-        <li class="list-group-item border-top-0 pt-0">
-          <button class="btn btn-md btn-block bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase mt-2 mb-0" data-toggle="modal"
-            data-target="#exampleModal" (click)="modalOpen(item)">lo quiero</button>
-        </li>
-      </ul>
-      <ul class="list-group mb-3" *ngIf="item.status === 4">
-        <li class="list-group-item border-bottom-0">
-          <h6 class="pb-0 pt-1 font-roboto font-weight-bold letspc-5 text-uppercase font-orange font_disabled">{{ item.Menu.name
-            }} - {{ item.Menu.description }}</h6>
-          <p class="m-0 font_disabled">Dueño: {{ item.User.name }}</p>
-        </li>
-        <li class="list-group-item border-top-0 pt-0 text-right">
-          <span class="badge p-2 font-weight-bold bg_orange text-white text-uppercase">Vendido</span>
-        </li>
-      </ul>
+  <!-- FALLBACK -->
+  <div class="fallback_box" *ngIf="availableTickets.length == 0">
+    <div class="align-self-center w-100 p-3 text-center" style="margin-top: -115px;">
+      <h5 class=“font-regular”>Todavía no se han publicado menús para el día seleccionado.</h5>
+      <p class=“font-light”>Consulta más tarde</p>
     </div>
   </div>
 
-  <div class="modal mx-2 fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" [ngStyle]="{'display': modalIsOpen ? 'block' : 'none', 'opacity': 1}">
-    <div class="modal-dialog-centered">
-      <div class="modal-content shadow-medium">
-        <div class="modal-body text-center">
-          <p class="h3 font-weight-light mb-2">¿Cómo desesas canjearlo?</p>
-          <div class="rounded py-0 my-3 border">
-            <div class="radio px-3 py-2  text-left">
-              <input type="radio" name="typeSale" [ngModel]="typeSale" [value]="2">
-              <label for="radio1" class="mb-0 font-weight-medium pl-2">
-                Efectivo
-              </label>
+  <!-- LISTA DE TICKETS -->
+  <ng-container *ngIf="availableTickets.length > 0">
+    <div class="row">
+      <div class="col-12" *ngFor="let item of availableTickets">
+        <ul class="list-group mb-3" *ngIf="item.status === 3">
+          <li class="list-group-item border-bottom-0">
+            <h6 class="pb-0 pt-1 font-roboto font-weight-bold letspc-5 text-uppercase font-orange">{{ item.Menu.name }} -
+              {{ item.Menu.description }}</h6>
+            <p class="m-0">Dueño: {{ item.User.name }}</p>
+          </li>
+          <li class="list-group-item border-top-0 pt-0">
+            <button class="btn btn-md btn-block bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase mt-2 mb-0" data-toggle="modal"
+              data-target="#exampleModal" (click)="modalOpen(item)">lo quiero</button>
+          </li>
+        </ul>
+        <ul class="list-group mb-3" *ngIf="item.status === 4">
+          <li class="list-group-item border-bottom-0">
+            <h6 class="pb-0 pt-1 font-roboto font-weight-bold letspc-5 text-uppercase font-orange font_disabled">{{ item.Menu.name
+              }} - {{ item.Menu.description }}</h6>
+            <p class="m-0 font_disabled">Dueño: {{ item.User.name }}</p>
+          </li>
+          <li class="list-group-item border-top-0 pt-0 text-right">
+            <span class="badge p-2 font-weight-bold bg_orange text-white text-uppercase">Vendido</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="modal mx-2 fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" [ngStyle]="{'display': modalIsOpen ? 'block' : 'none', 'opacity': 1}">
+      <div class="modal-dialog-centered">
+        <div class="modal-content shadow-medium">
+          <div class="modal-body text-center">
+            <p class="h3 font-weight-light mb-2">¿Cómo desesas canjearlo?</p>
+            <div class="rounded py-0 my-3 border">
+              <div class="radio px-3 py-2  text-left">
+                <input type="radio" name="typeSale" [ngModel]="typeSale" [value]="2">
+                <label for="radio1" class="mb-0 font-weight-medium pl-2">
+                  Efectivo
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="rounded py-0 my-3 border">
-            <div class="radio px-3 py-2  text-left">
-              <input type="radio" name="typeSale" [ngModel]="typeSale" [value]="1">
-              <label for="radio2" class="mb-0 font-weight-medium pl-2">
-                Intercambio ticket
-              </label>
+            <div class="rounded py-0 my-3 border">
+              <div class="radio px-3 py-2  text-left">
+                <input type="radio" name="typeSale" [ngModel]="typeSale" [value]="1">
+                <label for="radio2" class="mb-0 font-weight-medium pl-2">
+                  Intercambio ticket
+                </label>
+              </div>
             </div>
+            <p class="font-gray font_small mb-4">Tienes {{ tickets }} tickets disponibles</p>
+            <button type="button" class="btn px-5 bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase" data-dismiss="modal"
+              (click)="purchase(exchange)">Aceptar</button>
           </div>
-          <p class="font-gray font_small mb-4">Tienes {{ tickets }} tickets disponibles</p>
-          <button type="button" class="btn px-5 bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase" data-dismiss="modal"
-            (click)="purchase(exchange)">Aceptar</button>
         </div>
       </div>
     </div>
-  </div>
+  </ng-container>
   <div class="modal-backdrop fade show" *ngIf="modalIsOpen"></div>
 </div>

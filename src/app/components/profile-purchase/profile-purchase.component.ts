@@ -7,7 +7,7 @@ import { UserService } from '../../services'
   templateUrl: './profile-purchase.component.html',
 })
 export class ProfilePurchaseComponent implements OnInit {
-  purchaseByMonth: TicketPurchaseByMonth[]
+  purchaseByMonth: TicketPurchaseByMonth[] = []
   currentUser: User
 
   constructor(private userService: UserService) {

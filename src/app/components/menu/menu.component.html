@@ -2,61 +2,73 @@
   <div class="row align-items-center">
     <div class="col-12 bg-light pt-5 px-0">
       <div class="text-center date-box">
-          <div class="bg-light text-center text-uppercase m-0 py-2 w-100">
-              <p class="h6 text-center text-uppercase m-0 d-table w-100">
-                  <button class="btn btn-md btn-light float-left bg_clear border-0" (click)="subtractDay()"><i class="material-icons pt-2">keyboard_arrow_left</i></button>
-                  <button class="btn btn-md btn-light float-right bg_clear border-0" (click)="addDay()"><i class="material-icons pt-2">keyboard_arrow_right</i></button>
-                  <span style="display: inline-flex; margin-top: 17px;">
-                    <i class="material-icons md-18 align-middle" style="margin-right:5px">today</i>
-                    {{ parseCurrentDate | date: 'MMMM d, y' }}
-                  </span>
-              </p>
-            </div>
-      </div>
-    </div>
-    <div class="col-12 pt-4 text-center">
-      <p>Elije tu opción favorita para almorzar:</p>
-    </div>
-  </div>
-
-  <!-- ROW POR MENU-->
-  <div class="row" *ngFor="let menu of menuList">
-    <div class="col-12">
-      <h6 class="py-3 m-0 font-roboto font-weight-bold letspc-5 text-uppercase font-orange">{{ menu.name }}</h6>
-      <ul class="list-group mb-4">
-        <li class="list-group-item">{{ menu.description }}</li>
-        <li class="list-group-item" *ngFor="let item of menu.garnish">{{ item }}</li>
-        <li class="list-group-item border-top-0">
-          <button class="btn btn-md btn-block bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase mt-2 mb-3" data-toggle="modal"
-            data-target="#exampleModal" (click)="openModal(menu)">Canjear ticket</button>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal mx-2 fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
-    [ngStyle]="{'display': modalIsOpen ? 'block' : 'none', 'opacity': 1}">
-    <div class="modal-dialog-centered" role="document">
-      <div class="modal-content shadow-medium">
-        <div class="modal-body text-center" *ngIf="menuSelected">
-          <p class="h2 font-weight-light">¡Buen provecho!</p>
-          <p class="py-0 my-0 font-gray">Canjearás tu ticket para</p>
-          <p class="py-1 my-0 font-orange h5">{{ menuSelected.date | date }}</p>
-          <p class="py-0 my-0 font-gray">elegiste el {{ menuSelected.name }}</p>
-          <p class="py-3 mb-0">
-            <i class="material-icons md-48 font-orange">restaurant</i>
-          </p>
-          <p>
-            <button type="button" class="btn px-5 bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase" data-dismiss="modal"
-              (click)="exchange(menuSelected)">Confirmar</button>
-          </p>
-          <p>
-            <span class="font-orange btn btn-sm btn-link" (click)="closeModal()">Cancelar</span>
+        <div class="bg-light text-center text-uppercase m-0 py-2 w-100">
+          <p class="h6 text-center text-uppercase m-0 d-table w-100">
+            <button class="btn btn-md btn-light float-left bg_clear border-0" (click)="subtractDay()"><i class="material-icons pt-2">keyboard_arrow_left</i></button>
+            <button class="btn btn-md btn-light float-right bg_clear border-0" (click)="addDay()"><i class="material-icons pt-2">keyboard_arrow_right</i></button>
+            <span style="display: inline-flex; margin-top: 17px;">
+              <i class="material-icons md-18 align-middle" style="margin-right:5px">today</i>
+              {{ parseCurrentDate | date: 'MMMM d, y' }}
+            </span>
           </p>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="col-12 pt-4 text-center" *ngIf="menuList.length > 0">
+    <p>Elije tu opción favorita para almorzar:</p>
+  </div>
+
+  <!-- FALLBACK -->
+  <div class="fallback_box" *ngIf="menuList.length == 0">
+    <div class="align-self-center w-100 p-3 text-center" style="margin-top: -115px;">
+      <h5 class=“font-regular”>Todavía no se han publicado menús para el día seleccionado.</h5>
+      <p class=“font-light”>Consulta más tarde</p>
+    </div>
+  </div>
+
+  <!-- ROW POR MENU -->
+  <ng-container *ngIf="menuList.length > 0">
+    <div class="row" *ngFor="let menu of menuList">
+      <div class="col-12">
+        <h6 class="py-3 m-0 font-roboto font-weight-bold letspc-5 text-uppercase font-orange">{{ menu.name }}</h6>
+        <ul class="list-group mb-4">
+          <li class="list-group-item">{{ menu.description }}</li>
+          <li class="list-group-item" *ngFor="let item of menu.garnish">{{ item }}</li>
+          <li class="list-group-item border-top-0">
+            <button class="btn btn-md btn-block bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase mt-2 mb-3" data-toggle="modal"
+              data-target="#exampleModal" (click)="openModal(menu)">Canjear ticket</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal mx-2 fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+      [ngStyle]="{'display': modalIsOpen ? 'block' : 'none', 'opacity': 1}">
+      <div class="modal-dialog-centered" role="document">
+        <div class="modal-content shadow-medium">
+          <div class="modal-body text-center" *ngIf="menuSelected">
+            <p class="h2 font-weight-light">¡Buen provecho!</p>
+            <p class="py-0 my-0 font-gray">Canjearás tu ticket para</p>
+            <p class="py-1 my-0 font-orange h5">{{ menuSelected.date | date }}</p>
+            <p class="py-0 my-0 font-gray">elegiste el {{ menuSelected.name }}</p>
+            <p class="py-3 mb-0">
+              <i class="material-icons md-48 font-orange">restaurant_menu</i>
+            </p>
+            <p>
+              <button type="button" class="btn px-5 bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase" data-dismiss="modal"
+                (click)="exchange(menuSelected)">Confirmar</button>
+            </p>
+            <p>
+              <span class="font-orange btn btn-sm btn-link" (click)="closeModal()">Cancelar</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
   <div class="modal-backdrop fade show" *ngIf="modalIsOpen"></div>
 </div>

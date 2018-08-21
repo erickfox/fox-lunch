@@ -4,14 +4,19 @@
     height: 100%;
   }
 
+  .head-box{
+    padding-top:0.7rem;
+  }
 
-  .fallback_box{
-    visibility: hidden;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    z-index: 3;
+  .fallback_box {
+    top: 115px;
+    left:0;
+   visibility: visible;
+   display: flex;
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   z-index: 3;
   }
 
   .loader{
