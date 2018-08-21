@@ -2,9 +2,11 @@
   <div class="row">
     <div class="col-12 py-5 text-center">
       <p class="pt-5 mb-1">Hola {{ currentUser.name }}</p>
-      <p class="h4">¿Qué vas a almorzar hoy?</p>
+      <p class="h4" *ngIf="toReserveView">¿Qué vas a almorzar mañana?</p>
+      <p class="h4" *ngIf="!toReserveView && salesView">Se agotó el tiempo para canjear tu almuerzo</p>
+      <p class="h4" *ngIf="reservedMenuView">Tu menú de hoy es: </p>
       <p *ngIf="toReserveView" class="h6 mb-4">Tienes hasta las
-        <span class="font-orange">09:00am</span> para elegir tu almuerzo.</p>
+        <span class="font-orange">07:00p.m.</span> para elegir tu almuerzo.</p>
       <button *ngIf="toReserveView" routerLink="/menu" class="btn btn-md bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase px-4"
         type="submit">Ver menú</button>
     </div>

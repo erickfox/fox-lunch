@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, OnDestroy } from '@angular/core'
+import { Router } from '@angular/router'
 import { ExchangeService, SaleService } from '../../services'
-import { NotifierService } from 'angular-notifier';
+import { NotifierService } from 'angular-notifier'
 import { User } from '../../models'
 
 @Component({
@@ -15,14 +16,14 @@ export class HomeComponent implements OnInit {
   availableTickets: number = 0
   exchange = null
   currentDate = new Date()
-  countDownTimer = this.parseDate(this.currentDate) + ' 09:00:00'
+  countDownTimer = this.parseDate(this.currentDate) + ' 19:00:00'
   hours = 0
   minutes = 0
   seconds = 0
   currentUser: User
 
-  constructor(private exchangeService: ExchangeService, private saleService: SaleService, private notifierService: NotifierService) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  constructor(private router: Router, private exchangeService: ExchangeService, private saleService: SaleService, private notifierService: NotifierService) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
   }
 
   ngOnInit() {
@@ -67,7 +68,7 @@ export class HomeComponent implements OnInit {
         error => {
           console.log('exchangeUser => ', error)
           const currentTime = new Date().getHours()
-          this.toReserveView = currentTime < 9 ? true : false
+          this.toReserveView = currentTime < 19 ? true : false
           this.salesView = true
         })
   }
@@ -83,7 +84,7 @@ export class HomeComponent implements OnInit {
         .subscribe(
           data => {
             this.showAlert('success', 'Tu canje ha sido cancelado')
-            window.location.reload()
+            this.router.navigate([''])
           },
           error => {
             this.showAlert('error', error)
@@ -102,7 +103,7 @@ export class HomeComponent implements OnInit {
         .subscribe(
           data => {
             this.showAlert('success', 'Tu ticket se ha puesto en venta')
-            window.location.reload()
+            this.router.navigate(['/'])
           }, error => {
             this.showAlert('error', error)
           })

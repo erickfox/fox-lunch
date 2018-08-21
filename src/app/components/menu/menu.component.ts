@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { User, Menu } from '../../models'
 import { MenuService, ExchangeService } from '../../services'
@@ -9,26 +9,22 @@ import { NotifierService } from 'angular-notifier'
   templateUrl: './menu.component.html'
 })
 
-export class MenuComponent implements OnInit, OnChanges {
+export class MenuComponent implements OnInit {
   menuList = []
   currentDate = new Date()
   currentUser: User
   parseCurrentDate: string
   menuSelected: Menu = null
   modalIsOpen: boolean = false
-  errorMessage: string = ''
 
   constructor(private router: Router, private menuService: MenuService, private exchangeService: ExchangeService, private notifierService: NotifierService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
   }
 
   ngOnInit() {
+    this.currentDate.setDate(this.currentDate.getDate() + 1)
     this.parseCurrentDate = this.parseDate(this.currentDate)
     this.getByDate(this.parseCurrentDate)
-  }
-
-  ngOnChanges() {
-    console.log("Entra")
   }
 
   openModal(menu: Menu): void {
