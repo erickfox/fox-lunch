@@ -1,14 +1,14 @@
 <!-- As a heading -->
 <nav class="navbar py-1 fixed-top bg_orange" *ngIf="sessionActive">
-    <span routerLink="" class="navbar-text text-white font-roboto font-weight-bold letspc-5">
-      Inicio
+  <span routerLink="" class="navbar-text text-white font-roboto font-weight-bold letspc-5">
+    Inicio
+  </span>
+  <button (click)="openNav()" class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon">
+      <img height="100%" src="../assets/img/menu_icon.jpg" />
     </span>
-    <button (click)="openNav()" class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon">
-        <img height="100%" src="../assets/img/menu_icon.jpg" />
-      </span>
-    </button>
-  </nav>
+  </button>
+</nav>
 
 <div #sideBar id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">

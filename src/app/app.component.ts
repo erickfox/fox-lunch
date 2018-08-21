@@ -6,7 +6,7 @@ import { Component, ElementRef, ViewChild, AfterContentChecked } from '@angular/
 })
 
 export class AppComponent implements AfterContentChecked {
-  @ViewChild('sideBar') sideBar:ElementRef
+  @ViewChild('sideBar') sideBar: ElementRef
   sessionActive: boolean = false
 
   constructor() { }

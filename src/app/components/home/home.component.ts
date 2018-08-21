@@ -1,5 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core'
-import { Router } from '@angular/router'
+import { Component, OnInit } from '@angular/core'
 import { ExchangeService, SaleService } from '../../services'
 import { NotifierService } from 'angular-notifier'
 import { User } from '../../models'
@@ -22,7 +21,7 @@ export class HomeComponent implements OnInit {
   seconds = 0
   currentUser: User
 
-  constructor(private router: Router, private exchangeService: ExchangeService, private saleService: SaleService, private notifierService: NotifierService) {
+  constructor(private exchangeService: ExchangeService, private saleService: SaleService, private notifierService: NotifierService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
   }
 
