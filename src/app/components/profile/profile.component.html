@@ -11,7 +11,9 @@
     </div>
     <div class="col-12 py-4 px-3 clearfix border-bottom">
       <p class="h6 text-center font-orange">Para recibir tu almuerzo, muestra tu gafete o este código QR</p>
-      <qrcode [qrdata]="qrData" [size]="200" [level]="'M'"></qrcode>
+      <div class="text-center">
+        <qrcode [qrdata]="qrData" [size]="200" [level]="'M'"></qrcode>
+      </div>
     </div>
     <div class="col-12 p-0 clearfix border-bottom">
       <button class="btn btn-md btn-light float-right bg_clear border-0">

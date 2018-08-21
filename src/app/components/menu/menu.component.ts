@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, OnChanges } from '@angular/core'
 import { Router } from '@angular/router'
 import { User, Menu } from '../../models'
 import { MenuService, ExchangeService } from '../../services'
@@ -6,13 +6,14 @@ import { NotifierService } from 'angular-notifier'
 
 @Component({
   selector: 'app-menu',
-  templateUrl: './menu.component.html',
+  templateUrl: './menu.component.html'
 })
 
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit, OnChanges {
   menuList = []
   currentDate = new Date()
   currentUser: User
+  parseCurrentDate: string
   menuSelected: Menu = null
   modalIsOpen: boolean = false
   errorMessage: string = ''
@@ -22,7 +23,12 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getByDate(this.parseDate(this.currentDate))
+    this.parseCurrentDate = this.parseDate(this.currentDate)
+    this.getByDate(this.parseCurrentDate)
+  }
+
+  ngOnChanges() {
+    console.log("Entra")
   }
 
   openModal(menu: Menu): void {
@@ -41,6 +47,7 @@ export class MenuComponent implements OnInit {
   }
 
   getByDate(date: string): void {
+    this.menuList = []
     this.menuService.getByDate(date)
       .pipe()
       .subscribe(
@@ -83,6 +90,18 @@ export class MenuComponent implements OnInit {
           this.closeModal()
           this.showAlert('error', error)
         })
+  }
+
+  addDay(): void {
+    this.currentDate.setDate(this.currentDate.getDate() + 1)
+    this.parseCurrentDate = this.parseDate(this.currentDate)
+    this.getByDate(this.parseCurrentDate)
+  }
+
+  subtractDay(): void {
+    this.currentDate.setDate(this.currentDate.getDate() - 1)
+    this.parseCurrentDate = this.parseDate(this.currentDate)
+    this.getByDate(this.parseCurrentDate)
   }
 
   showAlert(type: string, message: string): void {
