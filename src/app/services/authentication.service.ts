@@ -7,8 +7,8 @@ import { User } from '../models'
 export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
-  login(email: string, password: string) {
-    return this.http.post<User>('/login', { email: email, password: password })
+  login(params) {
+    return this.http.post<User>('/login', params)
       .pipe(map(user => {
         if (user && user.token) {
           if (user.firstLogin) {
@@ -25,5 +25,9 @@ export class AuthenticationService {
   logout() {
     localStorage.removeItem('currentUser')
     localStorage.removeItem('tempUser')
+  }
+
+  resetPassword(params) {
+    return this.http.post('/user/' + params.id + '/password', params)
   }
 }

@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router, ActivatedRoute } from '@angular/router'
 import { AuthenticationService } from '../../services'
 import { NotifierService } from 'angular-notifier'
-import { User } from '../../models'
 
 @Component({
   selector: 'app-login',
@@ -12,8 +11,6 @@ import { User } from '../../models'
 export class LoginComponent implements OnInit {
   loginForm: FormGroup
   returnUrl: string
-  loading: boolean = false
-  submitted: boolean = false
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,15 +34,17 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    this.submitted = true;
-
     if (this.loginForm.invalid) {
       this.showAlert('error', 'Debes ingresar valores válidos')
       return
     }
 
-    this.loading = true;
-    this.authenticationService.login(this.form.email.value, this.form.password.value)
+    const params = { 
+      email: this.form.email.value, 
+      password: this.form.password.value
+    }
+
+    this.authenticationService.login(params)
       .pipe()
       .subscribe(
         data => {
@@ -58,7 +57,6 @@ export class LoginComponent implements OnInit {
         },
         error => {
           this.showAlert('error', 'Verifica tus credenciales')
-          this.loading = false;
         })
   }
 
