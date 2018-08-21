@@ -43,7 +43,14 @@ export class MenuComponent implements OnInit, OnChanges {
 
   parseDate(date): string {
     const typeDate = new Date(date)
-    return typeDate.getFullYear() + '-' + (typeDate.getMonth() + 1) + '-' + typeDate.getDate()
+    let month: number = typeDate.getMonth() + 1
+    let parseMonth: string = ''
+
+    if (month < 10) {
+      parseMonth = '0' + month
+    }
+
+    return typeDate.getFullYear() + '-' + parseMonth + '-' + typeDate.getDate()
   }
 
   getByDate(date: string): void {

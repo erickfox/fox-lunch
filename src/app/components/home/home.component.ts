@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
         },
         error => {
           console.log('exchangeUser => ', error)
-          const currentTime = new Date().getHours()
+          const currentTime = new Date().getUTCHours()
           this.toReserveView = currentTime < 9 ? true : false
           this.salesView = true
         })
@@ -111,7 +111,14 @@ export class HomeComponent implements OnInit {
 
   parseDate(date): string {
     const typeDate = new Date(date)
-    return typeDate.getFullYear() + '-' + (typeDate.getMonth() + 1) + '-' + typeDate.getDate()
+    let month: number = typeDate.getMonth() + 1
+    let parseMonth: string = ''
+
+    if (month < 10) {
+      parseMonth = '0' + month
+    }
+
+    return typeDate.getFullYear() + '-' + parseMonth + '-' + typeDate.getDate()
   }
 
   startTimer(): void {
