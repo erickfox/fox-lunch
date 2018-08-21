@@ -4,6 +4,16 @@
     height: 100%;
   }
 
+
+  .fallback_box{
+    visibility: hidden;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 3;
+  }
+
   .loader{
     display: none;
     width: 100%;
@@ -111,7 +121,7 @@
   }
 
   .date-box{
-    padding-top:0.7rem;
+    padding-top:0;
   }
 
   /* SHADOW STYLES */
@@ -192,6 +202,23 @@
     opacity:0.5;
   }
 
+
+  /* PESO TEXTO */
+  .font-light{
+    font-weight: 300;
+  }
+
+  .font-regular{
+    font-weight: 400;
+  }
+
+  .font-medium{
+    font-weight: 700;
+  }
+
+  .font-bold{
+    font-weight: 900;
+  }
 
   /* RADIO CUSTOM 
 
@@ -410,3 +437,116 @@
       .sidenav {padding-top: 15px;}
       .sidenav a {font-size: 18px;}
   }
+
+  /*  NOTIFIER STYLES  */
+
+  .notifier__container * {
+    box-sizing: border-box;
+  }
+  
+  .notifier__container-list {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style-type: none;
+  }
+  
+  .notifier__notification {
+    display: block;
+    position: fixed;
+    visibility: hidden;
+    z-index: 10000;
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+  
+  .notifier__notification--material {
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    cursor: default;
+    padding-top: 11px;
+    padding-right: 26px;
+    padding-bottom: 10px;
+    padding-left: 26px;
+  }
+  
+  .notifier__notification--material .notifier__notification-message {
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: 0;
+    vertical-align: top;
+    line-height: 32px;
+    font-size: 15px;
+  }
+  
+  .notifier__notification--material .notifier__notification-button {
+    display: inline-block;
+    transition: opacity .2s ease;
+    opacity: .5;
+    margin-right: -10px;
+    margin-left: 10px;
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 6px;
+    width: 32px;
+    height: 32px;
+    vertical-align: top;
+  }
+  
+  .notifier__notification--material .notifier__notification-button:hover, .notifier__notification--material .notifier__notification-button:focus {
+    opacity: 1;
+  }
+  
+  .notifier__notification--material .notifier__notification-button:active {
+    transform: scale(0.82);
+    opacity: 1;
+  }
+  
+  .notifier__notification--default {
+    background-color: #444;
+    color: #FFF;
+  }
+  
+  .notifier__notification--default .notifier__notification-button-icon {
+    fill: #FFF;
+  }
+  
+  .notifier__notification--error {
+    background-color: #D9534F;
+    color: #FFF;
+  }
+  
+  .notifier__notification--error .notifier__notification-button-icon {
+    fill: #FFF;
+  }
+  
+  .notifier__notification--info {
+    background-color: #5BC0DE;
+    color: #FFF;
+  }
+  
+  .notifier__notification--info .notifier__notification-button-icon {
+    fill: #FFF;
+  }
+  
+  .notifier__notification--success {
+    background-color: #5CB85C;
+    color: #FFF;
+  }
+  
+  .notifier__notification--success .notifier__notification-button-icon {
+    fill: #FFF;
+  }
+  
+  .notifier__notification--warning {
+    background-color: #F0AD4E;
+    color: #FFF;
+  }
+  
+  .notifier__notification--warning .notifier__notification-button-icon {
+    fill: #FFF;
+  }
+  
+  /*# sourceMappingURL=styles.css.map */
