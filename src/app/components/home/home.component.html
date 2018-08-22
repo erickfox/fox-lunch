@@ -1,19 +1,29 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 py-5 text-center">
+    <div class="col-12 py-5 text-center" *ngIf="!countDownView">
       <p class="pt-5 mb-1">Hola {{ currentUser.name }}</p>
-      <p class="h4" *ngIf="toReserveView">¿Qué vas a almorzar mañana?</p>
-      <p class="h4" *ngIf="!toReserveView && salesView">Se agotó el tiempo para canjear tu almuerzo</p>
-      <p class="h4" *ngIf="reservedMenuView">Tu menú de hoy es: </p>
-      <p *ngIf="toReserveView" class="h6 mb-4">Tienes hasta las
-        <span class="font-orange">07:00p.m.</span> para elegir tu almuerzo.</p>
-      <button *ngIf="toReserveView" routerLink="/menu" class="btn btn-md bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase px-4"
-        type="submit">Ver menú</button>
+      <p class="h4" *ngIf="!alreadyExchange">Se agotó el tiempo para cancelar tu almuerzo</p>
+      <p class="h4" *ngIf="alreadyExchange">Se agotó el tiempo para canjear tu almuerzo</p>
+      <button routerLink="/exchanges" class="btn btn-md bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase px-4"
+        type="submit" *ngIf="alreadyExchange">Ver mis canjes</button>
+    </div>
+    <div class="col-12 py-5 text-center" *ngIf="purchaseView">
+      <p class="pt-5 mb-1">Hola {{ currentUser.name }}</p>
+      <p class="h4" *ngIf="!alreadyExchange">¿Qué vas a almorzar mañana?</p>
+      <p class="h4" *ngIf="alreadyExchange">Ya has realizado tu canje</p>
+      <p class="h6 mb-4" *ngIf="!alreadyExchange">Tienes hasta las
+        <span class="font-orange">07:00p.m.</span> para realizar tu canje.</p>
+      <p class="h6 mb-4" *ngIf="alreadyExchange">Tienes hasta las
+        <span class="font-orange">07:00p.m.</span> para cancelarlo.</p>
+      <button routerLink="/menu" class="btn btn-md bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase px-4"
+        type="submit" *ngIf="!alreadyExchange">Ver menú</button>
+      <button routerLink="/exchanges" class="btn btn-md bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase px-4"
+        type="submit" *ngIf="alreadyExchange">Ver mis canjes</button>
     </div>
   </div>
 
   <!-- COUNTER -->
-  <div class="row  py-2 text-center bg-light" *ngIf="toReserveView">
+  <div class="row  py-2 text-center bg-light" *ngIf="countDownView">
     <div class="col-12">
       <p class="pt-3 mb-4 text-uppercase">Quedan</p>
     </div>
@@ -35,7 +45,7 @@
   </div>
 
   <!-- VENTAS DISPONIBLES, NOTIFICAR DE VENTAS, NO HAY VENTAS -->
-  <div class="row  pt-0 bg-light" *ngIf="salesView">
+  <div class="row  pt-0 bg-light">
     <div class="col-12 m-0 px-3 my-3 border-bottom">
       <p class="float-left pt-0 mb-0 text-uppercase">Ventas</p>
       <h6 class="float-right">
@@ -47,30 +57,6 @@
       <button routerLink="/ticket-sale" class="btn btn-md btn-block bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase mb-3">Buscar
         ticket
       </button>
-    </div>
-  </div>
-
-  <!-- MI MENU DE HOY -->
-  <div class="row" *ngIf="reservedMenuView">
-    <div class="col-12">
-      <h6 class="py-3 m-0 font-roboto font-weight-bold letspc-5 text-uppercase font-orange">{{ exchange.menu.name }}</h6>
-      <ul class="list-group mb-4">
-        <li class="list-group-item">{{ exchange.menu.description }}</li>
-        <li class="list-group-item" *ngFor="let item of exchange.menu.garnish">{{ item }}</li>
-        <!-- <li class="list-group-item border-bottom-0 border-top-0">
-        <button class="btn btn-md btn-block bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase mt-2">Cambiar menú</button>
-      </li> -->
-        <li class="list-group-item border-bottom-0 border-top-0">
-          <button class="btn btn-md btn-block bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase" (click)="sellTicket()">Vender
-            ticket
-          </button>
-        </li>
-        <li class="list-group-item border-top-0">
-          <button class="btn btn-md btn-block bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase mb-3" (click)="cancelExchage()">Cancelar
-            ticket
-          </button>
-        </li>
-      </ul>
     </div>
   </div>
 </div>

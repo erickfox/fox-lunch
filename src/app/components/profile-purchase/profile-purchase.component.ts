@@ -21,7 +21,8 @@ export class ProfilePurchaseComponent implements OnInit {
   getPurchaseByMonth(): void {
     this.userService.purchaseByMonth(this.currentUser.id).pipe().subscribe(
       data => {
-        this.purchaseByMonth = data.filter(item => item.tickets.length > 0)
+        const sortData = data.filter(item => item.tickets.length > 0)
+        this.purchaseByMonth = sortData.reverse()
       },
       error => {
         console.log('getPurchaseByMonth => ', error)
