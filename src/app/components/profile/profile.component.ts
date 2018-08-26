@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
   qrData: string = ''
 
   constructor(private userService: UserService) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
     this.qrData = this.generateString()
   }
 
@@ -35,13 +35,13 @@ export class ProfileComponent implements OnInit {
 
   generateString(): string {
     let text = this.currentUser.id+','
-    const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 
     for (var i = 0; i < 128; i++)
-      text += possible.charAt(Math.floor(Math.random() * possible.length));
+      text += possible.charAt(Math.floor(Math.random() * possible.length))
 
     text += `,${this.currentUser.name}`
 
-    return text;
+    return text
   }
 }

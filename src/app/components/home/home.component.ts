@@ -102,7 +102,7 @@ export class HomeComponent implements OnInit {
   }
 
   showAlert(type: string, message: string): void {
-    this.notifierService.hideAll();
-    this.notifierService.notify(type, message);
+    this.notifierService.hideAll()
+    this.notifierService.notify(type, message)
   }
 }

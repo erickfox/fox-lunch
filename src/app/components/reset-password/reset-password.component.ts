@@ -54,7 +54,7 @@ export class ResetPasswordComponent implements OnInit {
         .subscribe(
           data => {
             this.showAlert('success', 'Contraseña actualizada correctamente')
-            this.router.navigate(['/login']);
+            this.router.navigate(['/login'])
           },
           error => {
             console.log(error)
@@ -66,7 +66,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   showAlert(type: string, message: string): void {
-    this.notifierService.hideAll();
-    this.notifierService.notify(type, message);
+    this.notifierService.hideAll()
+    this.notifierService.notify(type, message)
   }
 }

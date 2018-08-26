@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { Exchange, User } from '../../models'
 import { ExchangeService, SaleService } from '../../services'
 import { NotifierService } from 'angular-notifier'
@@ -109,7 +109,7 @@ export class ExchangeComponent implements OnInit {
   }
 
   showAlert(type: string, message: string): void {
-    this.notifierService.hideAll();
-    this.notifierService.notify(type, message);
+    this.notifierService.hideAll()
+    this.notifierService.notify(type, message)
   }
 }

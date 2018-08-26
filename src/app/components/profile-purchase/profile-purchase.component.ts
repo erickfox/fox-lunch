@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { TicketPurchaseByMonth, User } from '../../models'
 import { UserService } from '../../services'
 

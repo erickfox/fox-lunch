@@ -23,10 +23,10 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
-    });
+    })
 
-    this.authenticationService.logout();
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.authenticationService.logout()
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/'
   }
 
   get form() {
@@ -49,10 +49,10 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           if (data.firstLogin) {
-            this.router.navigate(['/reset-password']);
+            this.router.navigate(['/reset-password'])
           } else {
             this.showAlert('success', 'Bienvenido :)')
-            this.router.navigate([this.returnUrl]);
+            this.router.navigate([this.returnUrl])
           }
         },
         error => {
@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
   }
 
   showAlert(type: string, message: string): void {
-    this.notifierService.hideAll();
-    this.notifierService.notify(type, message);
+    this.notifierService.hideAll()
+    this.notifierService.notify(type, message)
   }
 }

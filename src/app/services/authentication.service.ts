@@ -31,4 +31,8 @@ export class AuthenticationService {
   resetPassword(params) {
     return this.http.post(`${AppSettings.BASE_URL}/user/${params.id}/password`, params)
   }
+
+  forgetPassword(params) {
+    return this.http.post(`${AppSettings.BASE_URL}/login/recover`, params)
+  }
 }

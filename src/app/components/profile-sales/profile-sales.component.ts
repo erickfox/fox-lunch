@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { TicketsSold, User } from '../../models'
 import { UserService } from '../../services'
 
@@ -11,7 +11,7 @@ export class ProfileSalesComponent implements OnInit {
   currentUser: User
 
   constructor(private userService: UserService) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
   }
 
   ngOnInit() {
