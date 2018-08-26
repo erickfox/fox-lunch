@@ -16,6 +16,7 @@ import { ProfileComponent } from './components/profile/profile.component'
 import { ProfilePurchaseComponent } from './components/profile-purchase/profile-purchase.component'
 import { ProfileSalesComponent } from './components/profile-sales/profile-sales.component'
 import { TicketsSaleComponent } from './components/tickets-sale/tickets-sale.component'
+import { ExchangeComponent } from './components/exchanges/exchange.component'
 
 // Providers
 import { JwtInterceptor, ErrorInterceptor, BaseUrlInterceptor } from './helpers'
@@ -51,7 +52,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'exchanges',
-    component: MenuComponent,
+    component: ExchangeComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -91,7 +92,8 @@ const appRoutes: Routes = [
     ProfileComponent,
     ProfilePurchaseComponent,
     ProfileSalesComponent,
-    TicketsSaleComponent
+    TicketsSaleComponent,
+    ExchangeComponent
   ],
   imports: [
     BrowserModule,

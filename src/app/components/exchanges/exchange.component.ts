@@ -1,0 +1,31 @@
+import { Component, OnInit } from '@angular/core';
+import { TicketPurchaseByMonth, User } from '../../models'
+import { UserService } from '../../services'
+
+@Component({
+  selector: 'app-exchange',
+  templateUrl: './exchange.component.html',
+})
+export class ExchangeComponent implements OnInit {
+  purchaseByMonth: TicketPurchaseByMonth[] = []
+  currentUser: User
+
+  constructor(private userService: UserService) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
+  }
+
+  ngOnInit() {
+    this.getPurchaseByMonth()
+  }
+
+  getPurchaseByMonth(): void {
+    this.userService.purchaseByMonth(this.currentUser.id).pipe().subscribe(
+      data => {
+        const sortData = data.filter(item => item.tickets.length > 0)
+        this.purchaseByMonth = sortData.reverse()
+      },
+      error => {
+        console.log('getPurchaseByMonth => ', error)
+      })
+  }
+}

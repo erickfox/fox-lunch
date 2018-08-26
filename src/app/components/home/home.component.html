@@ -2,10 +2,8 @@
   <div class="row">
     <div class="col-12 py-5 text-center" *ngIf="!countDownView">
       <p class="pt-5 mb-1">Hola {{ currentUser.name }}</p>
-      <p class="h4" *ngIf="!alreadyExchange">Se agotó el tiempo para cancelar tu almuerzo</p>
-      <p class="h4" *ngIf="alreadyExchange">Se agotó el tiempo para canjear tu almuerzo</p>
-      <button routerLink="/exchanges" class="btn btn-md bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase px-4"
-        type="submit" *ngIf="alreadyExchange">Ver mis canjes</button>
+      <p class="h4" *ngIf="alreadyExchange">Se agotó el tiempo para cancelar tu canje</p>
+      <p class="h4" *ngIf="!alreadyExchange">Se agotó el tiempo para realizar tu canje</p>
     </div>
     <div class="col-12 py-5 text-center" *ngIf="purchaseView">
       <p class="pt-5 mb-1">Hola {{ currentUser.name }}</p>
