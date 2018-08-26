@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   alreadyExchange: boolean = false
   availableTickets: number = 0
   currentDate = new Date()
-  countDownTimer = this.parseDate(this.currentDate) + ' 21:00:00'
+  countDownTimer = this.parseDate(this.currentDate) + ' 19:00:00'
   hours = 0
   minutes = 0
   seconds = 0
@@ -76,7 +76,7 @@ export class HomeComponent implements OnInit {
 
   checkHour(): void {
     const currentTime = new Date()
-    if (currentTime.getHours() < 21) {
+    if (currentTime.getHours() < 19) {
       this.purchaseView = true
       this.countDownView = true
     } else {
