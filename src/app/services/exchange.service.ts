@@ -17,4 +17,8 @@ export class ExchangeService {
   exchangeUser(request: any) {
     return this.http.post<Exchange>('/exchange/user', request)
   }
+
+  exchangesUser(id: number) {
+    return this.http.get<[Exchange]>('/exchanges/user/' + id)
+  }
 }

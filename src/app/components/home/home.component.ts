@@ -62,44 +62,6 @@ export class HomeComponent implements OnInit {
         })
   }
 
-  cancelExchage(): void {
-    const params = {
-      exchange_id: 1
-    }
-
-    this.exchangeService.cancel(params)
-      .pipe()
-      .subscribe(
-        data => {
-          this.showAlert('success', 'Tu canje ha sido cancelado')
-          this.onRefresh()
-        },
-        error => {
-          this.showAlert('error', error)
-        })
-  }
-
-  sellTicket(): void {
-    const params = {
-      exchange_id: 1
-    }
-
-    this.saleService.sell(params)
-      .pipe()
-      .subscribe(
-        data => {
-          this.showAlert('success', 'Tu ticket se ha puesto en venta')
-          this.onRefresh()
-        }, error => {
-          this.showAlert('error', error)
-        })
-  }
-
-  onRefresh() {
-    this.exchangeUser()
-    this.getAvailableTickets()
-  }
-
   parseDate(date): string {
     const typeDate = new Date(date)
     let month: number = typeDate.getMonth() + 1
