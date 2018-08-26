@@ -63,8 +63,13 @@
               </div>
             </div>
             <p class="font-gray font_small mb-4">Tienes {{ tickets }} tickets disponibles</p>
-            <button type="button" class="btn px-5 bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase" data-dismiss="modal"
-              (click)="purchase(exchange)">Aceptar</button>
+            <p>
+              <button type="button" class="btn px-5 bg_gray text-white font-roboto font-weight-bold letspc-5 text-uppercase" data-dismiss="modal"
+                (click)="purchase(exchange)">Aceptar</button>
+            </p>
+            <p>
+              <span class="font-orange btn btn-md btn-link" (click)="closeModal()">Cancelar</span>
+            </p>
           </div>
         </div>
       </div>

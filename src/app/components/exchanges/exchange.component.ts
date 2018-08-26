@@ -9,7 +9,11 @@ import { NotifierService } from 'angular-notifier'
 })
 export class ExchangeComponent implements OnInit {
   exhanges = []
+  parseCurrentDate: string = this.getParseCurrentDate()
   currentUser: User
+  modalIsOpen: boolean = false
+  exchangeSelected = null
+  type: string = ''
 
   constructor(private exchangeService: ExchangeService, private notifierService: NotifierService, private saleService: SaleService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
@@ -19,11 +23,22 @@ export class ExchangeComponent implements OnInit {
     this.getExhanges()
   }
 
+  openModal(exchange, type: number): void {
+    this.type = type === 1 ? 'vender' : 'cancelar'
+    this.exchangeSelected = exchange
+    this.modalIsOpen = true
+  }
+
+  closeModal(): void {
+    this.modalIsOpen = false
+  }
+
   getExhanges(): void {
     this.exchangeService.exchangesUser(this.currentUser.id)
       .pipe()
       .subscribe(
         data => {
+          this.exhanges = []
           data.forEach(exchange => {
             const item = {
               id: exchange.id,
@@ -44,9 +59,9 @@ export class ExchangeComponent implements OnInit {
         })
   }
 
-  cancelExchage(): void {
+  cancelExchage(exchange): void {
     const params = {
-      exchange_id: 1
+      exchange_id: exchange.id
     }
 
     this.exchangeService.cancel(params)
@@ -54,15 +69,18 @@ export class ExchangeComponent implements OnInit {
       .subscribe(
         data => {
           this.showAlert('success', 'Tu canje ha sido cancelado')
+          this.closeModal()
+          this.getExhanges()
         },
         error => {
           this.showAlert('error', error)
+          this.closeModal()
         })
   }
 
-  sellTicket(): void {
+  sellTicket(exchange): void {
     const params = {
-      exchange_id: 1
+      exchange_id: exchange.id
     }
 
     this.saleService.sell(params)
@@ -70,9 +88,24 @@ export class ExchangeComponent implements OnInit {
       .subscribe(
         data => {
           this.showAlert('success', 'Tu ticket se ha puesto en venta')
+          this.closeModal()
+          this.getExhanges()
         }, error => {
           this.showAlert('error', error)
+          this.closeModal()
         })
+  }
+
+  getParseCurrentDate(): string {
+    const typeDate = new Date()
+    let month: number = typeDate.getMonth() + 1
+    let parseMonth: string = ''
+
+    if (month < 10) {
+      parseMonth = '0' + month
+    }
+
+    return typeDate.getFullYear() + '-' + parseMonth + '-' + typeDate.getDate()
   }
 
   showAlert(type: string, message: string): void {
