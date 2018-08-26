@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http'
+import { AppSettings } from '../app-settings/app-seettings'
 import { Menu } from '../models/menu'
 
 @Injectable()
@@ -7,37 +8,26 @@ export class MenuService {
   constructor(private http: HttpClient) { }
 
   all() {
-    return this.http.get('/menus')
+    return this.http.get(`${AppSettings.BASE_URL}/menus`)
   }
 
-  getOne(id: string) {
-    return this.http.get('/menus/' + id)
+  getOne(id: number) {
+    return this.http.get(`${AppSettings.BASE_URL}/menus/${id}`)
   }
 
   storeObject(request: any) {
-    const {
-      name,
-      email,
-      password,
-      isAdmin
-    } = request
-    const req = this.http.post('/menus', request)
-    return req
+    return this.http.post(`${AppSettings.BASE_URL}/menus`, request)
   }
 
   updateObject(request: any) {
-    const {
-      id
-    } = request
-    const req = this.http.put('/menus/' + id, request)
-    return req
+    return this.http.put(`${AppSettings.BASE_URL}/menus/${request.id}`, request)
   }
 
   deleteObject(id: number) {
-    return this.http.delete('/menus/' + id)
+    return this.http.delete(`${AppSettings.BASE_URL}/menus/${id}`)
   }
 
   getByDate(date: string) {
-    return this.http.get<[Menu]>('/menus/date/' + date)
+    return this.http.get<[Menu]>(`${AppSettings.BASE_URL}/menus/date/${date}`)
   }
 }

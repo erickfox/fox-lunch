@@ -19,7 +19,7 @@ import { TicketsSaleComponent } from './components/tickets-sale/tickets-sale.com
 import { ExchangeComponent } from './components/exchanges/exchange.component'
 
 // Providers
-import { JwtInterceptor, ErrorInterceptor, BaseUrlInterceptor } from './helpers'
+import { JwtInterceptor, ErrorInterceptor } from './helpers'
 import { AuthGuard } from './guards'
 import { AuthenticationService, ExchangeService, MenuService, PurchaseService, SaleService, UserService } from './services'
 
@@ -124,8 +124,7 @@ const appRoutes: Routes = [
     SaleService,
     UserService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: BaseUrlInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
