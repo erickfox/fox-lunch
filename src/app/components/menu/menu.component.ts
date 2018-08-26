@@ -11,11 +11,13 @@ import { NotifierService } from 'angular-notifier'
 
 export class MenuComponent implements OnInit {
   menuList = []
+  checkDate: Date = new Date()
   currentDate = new Date()
   currentUser: User
   parseCurrentDate: string
   menuSelected: Menu = null
   modalIsOpen: boolean = false
+  disableOption: boolean = false
 
   constructor(private router: Router, private menuService: MenuService, private exchangeService: ExchangeService, private notifierService: NotifierService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
@@ -99,12 +101,14 @@ export class MenuComponent implements OnInit {
     this.currentDate.setDate(this.currentDate.getDate() + 1)
     this.parseCurrentDate = this.parseDate(this.currentDate)
     this.getByDate(this.parseCurrentDate)
+    this.disableOption = this.checkDate.getTime() >= this.currentDate.getTime() ? true : false
   }
 
   subtractDay(): void {
     this.currentDate.setDate(this.currentDate.getDate() - 1)
     this.parseCurrentDate = this.parseDate(this.currentDate)
     this.getByDate(this.parseCurrentDate)
+    this.disableOption = this.checkDate.getTime() >= this.currentDate.getTime() ? true : false
   }
 
   showAlert(type: string, message: string): void {
