@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   alreadyExchange: boolean = false
   availableTickets: number = 0
   currentDate = new Date()
-  countDownTimer = this.parseDate(this.currentDate) + ' 19:00:00'
+  countDownTimer = this.currentDate.toLocaleDateString("en-US") + ' 19:00:00'
   hours = 0
   minutes = 0
   seconds = 0
@@ -70,7 +70,7 @@ export class HomeComponent implements OnInit {
     if (month < 10) {
       parseMonth = '0' + month
     }
-
+  
     return typeDate.getFullYear() + '-' + parseMonth + '-' + typeDate.getDate()
   }
 
@@ -87,7 +87,7 @@ export class HomeComponent implements OnInit {
 
   startTimer(): void {
     const limitDateTime = new Date(this.countDownTimer).getTime()
-
+    
     setInterval(() => {
       const currentDateTime = new Date().getTime()
       const distance = limitDateTime - currentDateTime
