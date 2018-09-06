@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http';
-import { AppSettings } from '../app-settings/app-seettings'
+import { AppSettings } from '../app-settings/app-settings'
 
 @Injectable()
 export class PurchaseService {

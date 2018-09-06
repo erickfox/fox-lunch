@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { AppSettings } from '../app-settings/app-seettings'
+import { AppSettings } from '../app-settings/app-settings'
 import { TicketPurchaseByMonth, TicketsSold, User } from '../models'
 
 @Injectable()
