@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { NotifierService } from 'angular-notifier'
+import { NgxSpinnerService } from 'ngx-spinner'
 import { User } from '../../models'
 import { AuthenticationService } from '../../services'
 
@@ -19,7 +20,8 @@ export class ResetPasswordComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthenticationService,
-    private notifierService: NotifierService) {
+    private notifierService: NotifierService,
+    private spinner: NgxSpinnerService) {
     this.currentUser = JSON.parse(localStorage.getItem('tempUser'))
   }
 
@@ -38,6 +40,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   resetPassword(): void {
+    this.spinner.show()
     if (this.resetPasswordForm.invalid) {
       this.showAlert('error', 'Debes ingresar valores válidos')
       return
@@ -54,10 +57,11 @@ export class ResetPasswordComponent implements OnInit {
         .subscribe(
           data => {
             this.showAlert('success', 'Contraseña actualizada correctamente')
+            this.spinner.hide()
             this.router.navigate(['/login'])
           },
           error => {
-            console.log(error)
+            this.spinner.hide()
             this.showAlert('error', error)
           })
     } else {

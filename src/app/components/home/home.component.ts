@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { NgxSpinnerService } from 'ngx-spinner'
 import { ExchangeService, SaleService } from '../../services'
 import { NotifierService } from 'angular-notifier'
 import { User } from '../../models'
@@ -20,7 +21,7 @@ export class HomeComponent implements OnInit {
   seconds = 0
   currentUser: User
 
-  constructor(private exchangeService: ExchangeService, private saleService: SaleService, private notifierService: NotifierService) {
+  constructor(private exchangeService: ExchangeService, private saleService: SaleService, private notifierService: NotifierService, private spinner: NgxSpinnerService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
   }
 
@@ -70,7 +71,7 @@ export class HomeComponent implements OnInit {
     if (month < 10) {
       parseMonth = '0' + month
     }
-  
+
     return typeDate.getFullYear() + '-' + parseMonth + '-' + typeDate.getDate()
   }
 
@@ -87,7 +88,7 @@ export class HomeComponent implements OnInit {
 
   startTimer(): void {
     const limitDateTime = new Date(this.countDownTimer).getTime()
-    
+
     setInterval(() => {
       const currentDateTime = new Date().getTime()
       const distance = limitDateTime - currentDateTime

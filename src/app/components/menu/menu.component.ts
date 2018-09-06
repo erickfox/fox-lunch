@@ -3,6 +3,7 @@ import { Router } from '@angular/router'
 import { User, Menu } from '../../models'
 import { MenuService, ExchangeService } from '../../services'
 import { NotifierService } from 'angular-notifier'
+import { NgxSpinnerService } from 'ngx-spinner'
 
 @Component({
   selector: 'app-menu',
@@ -19,7 +20,7 @@ export class MenuComponent implements OnInit {
   modalIsOpen: boolean = false
   disableOption: boolean = false
 
-  constructor(private router: Router, private menuService: MenuService, private exchangeService: ExchangeService, private notifierService: NotifierService) {
+  constructor(private router: Router, private menuService: MenuService, private exchangeService: ExchangeService, private notifierService: NotifierService, private spinner: NgxSpinnerService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
   }
 
@@ -52,6 +53,7 @@ export class MenuComponent implements OnInit {
   }
 
   getByDate(date: string): void {
+    this.spinner.show()
     this.menuList = []
     this.menuService.getByDate(date)
       .pipe()
@@ -69,13 +71,16 @@ export class MenuComponent implements OnInit {
 
             this.menuList.push(menuItem)
           })
+          this.spinner.hide()
         },
         error => {
           console.log('getByDate => ', error)
+          this.spinner.hide()
         })
   }
 
   exchange(menu): void {
+    this.spinner.show()
     const params = {
       user_id: this.currentUser.id,
       menu_id: menu.id,
@@ -88,11 +93,13 @@ export class MenuComponent implements OnInit {
         data => {
           this.closeModal()
           this.showAlert('success', 'Tu menú seleccionado ha sido reservado')
+          this.spinner.hide()
           this.router.navigate(['/'])
         },
         error => {
           this.menuSelected = null
           this.closeModal()
+          this.spinner.hide()
           this.showAlert('error', error)
         })
   }

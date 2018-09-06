@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router, ActivatedRoute } from '@angular/router'
 import { AuthenticationService } from '../../services'
 import { NotifierService } from 'angular-notifier'
+import { NgxSpinnerService } from 'ngx-spinner'
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private notifierService: NotifierService) { }
+    private notifierService: NotifierService,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -34,6 +36,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
+    this.spinner.show()
     if (this.loginForm.invalid) {
       this.showAlert('error', 'Debes ingresar valores válidos')
       return
@@ -52,10 +55,12 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['/reset-password'])
           } else {
             this.showAlert('success', 'Bienvenido :)')
+            this.spinner.hide()
             this.router.navigate([this.returnUrl])
           }
         },
         error => {
+          this.spinner.hide()
           this.showAlert('error', 'Verifica tus credenciales')
         })
   }

@@ -3,6 +3,7 @@ import { Router } from '@angular/router'
 import { AvailableTickets, User } from '../../models'
 import { SaleService, UserService, PurchaseService } from '../../services'
 import { NotifierService } from 'angular-notifier'
+import { NgxSpinnerService } from 'ngx-spinner'
 
 @Component({
   selector: 'app-tickets-sale',
@@ -17,7 +18,13 @@ export class TicketsSaleComponent implements OnInit {
   typeSale: number = 2
   exchange: AvailableTickets = null
 
-  constructor(private router: Router, private saleService: SaleService, private userService: UserService, private purchaseService: PurchaseService, private notifierService: NotifierService) {
+  constructor(
+    private router: Router, 
+    private saleService: SaleService, 
+    private userService: UserService, 
+    private purchaseService: PurchaseService, 
+    private notifierService: NotifierService, 
+    private spinner: NgxSpinnerService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
   }
 
@@ -48,18 +55,22 @@ export class TicketsSaleComponent implements OnInit {
   }
 
   getAvailable(): void {
+    this.spinner.show()
     this.saleService.available()
       .pipe()
       .subscribe(
         data => {
+          this.spinner.hide()
           this.availableTickets = data.filter(item => item.UserId !== this.currentUser.id)
         },
         error => {
+          this.spinner.hide()
           console.log('getAvailable => ', error)
         })
   }
 
   purchase(exchange: AvailableTickets): void {
+    this.spinner.show()
     const params = {
       user_sale: exchange.UserId,
       user_purchase: this.currentUser.id,
@@ -75,9 +86,11 @@ export class TicketsSaleComponent implements OnInit {
         data => {
           this.closeModal()
           this.showAlert('success', 'Tu canje ha sido realizado')
+          this.spinner.hide()
           this.router.navigate(['/'])
         },
         error => {
+          this.spinner.hide()
           this.showAlert('error', error)
         })
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { NotifierService } from 'angular-notifier'
+import { NgxSpinnerService } from 'ngx-spinner'
 import { AuthenticationService } from '../../services/authentication.service'
 
 @Component({
@@ -11,7 +12,12 @@ import { AuthenticationService } from '../../services/authentication.service'
 export class ForgetPasswordComponent implements OnInit {
   forgetPasswordForm: FormGroup
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private notifierService: NotifierService, private authService: AuthenticationService) { }
+  constructor(
+    private formBuilder: FormBuilder, 
+    private router: Router, 
+    private notifierService: NotifierService,
+    private authService: AuthenticationService,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.forgetPasswordForm = this.formBuilder.group({
@@ -24,6 +30,7 @@ export class ForgetPasswordComponent implements OnInit {
   }
 
   forgetPasword(): void {
+    this.spinner.show()
     if (this.forgetPasswordForm.invalid) {
       this.showAlert('error', 'Debes ingresar valores válidos')
       return
@@ -38,9 +45,11 @@ export class ForgetPasswordComponent implements OnInit {
       .subscribe(
         data => {
           this.showAlert('success', 'Revisa tu correo, ha sido enviada una nueva contraseña')
+          this.spinner.hide()
           this.router.navigate(['/login'])
         },
         error => {
+          this.spinner.hide()
           this.showAlert('error', error)
         }
       )

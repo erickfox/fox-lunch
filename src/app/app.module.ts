@@ -24,8 +24,9 @@ import { AuthGuard } from './guards'
 import { AuthenticationService, ExchangeService, MenuService, PurchaseService, SaleService, UserService } from './services'
 
 // Libraries
-import { NotifierModule } from 'angular-notifier';
-import { QRCodeModule } from 'angularx-qrcode';
+import { NotifierModule } from 'angular-notifier'
+import { QRCodeModule } from 'angularx-qrcode'
+import { NgxSpinnerModule } from 'ngx-spinner'
 
 const appRoutes: Routes = [
   {
@@ -101,6 +102,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     QRCodeModule,
+    NgxSpinnerModule,
     NotifierModule.withConfig({
       position: {
         horizontal: {

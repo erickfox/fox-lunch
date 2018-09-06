@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Exchange, User } from '../../models'
 import { ExchangeService, SaleService } from '../../services'
 import { NotifierService } from 'angular-notifier'
+import { NgxSpinnerService } from 'ngx-spinner'
 
 @Component({
   selector: 'app-exchange',
@@ -15,7 +16,11 @@ export class ExchangeComponent implements OnInit {
   exchangeSelected = null
   type: string = ''
 
-  constructor(private exchangeService: ExchangeService, private notifierService: NotifierService, private saleService: SaleService) {
+  constructor(
+    private exchangeService: ExchangeService, 
+    private notifierService: NotifierService, 
+    private saleService: SaleService, 
+    private spinner: NgxSpinnerService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
   }
 
@@ -34,6 +39,7 @@ export class ExchangeComponent implements OnInit {
   }
 
   getExhanges(): void {
+    this.spinner.show()
     this.exchangeService.exchangesUser(this.currentUser.id)
       .pipe()
       .subscribe(
@@ -53,13 +59,16 @@ export class ExchangeComponent implements OnInit {
 
             this.exhanges.push(item)
           })
+          this.spinner.hide()
         },
         error => {
           console.log('getExhanges => ', error)
+          this.spinner.hide()
         })
   }
 
   cancelExchage(exchange): void {
+    this.spinner.show()
     const params = {
       exchange_id: exchange.id
     }
@@ -70,15 +79,18 @@ export class ExchangeComponent implements OnInit {
         data => {
           this.showAlert('success', 'Tu canje ha sido cancelado')
           this.closeModal()
+          this.spinner.hide()
           this.getExhanges()
         },
         error => {
           this.showAlert('error', error)
           this.closeModal()
+          this.spinner.hide()
         })
   }
 
   sellTicket(exchange): void {
+    this.spinner.show()
     const params = {
       exchange_id: exchange.id
     }
@@ -89,10 +101,12 @@ export class ExchangeComponent implements OnInit {
         data => {
           this.showAlert('success', 'Tu ticket se ha puesto en venta')
           this.closeModal()
+          this.spinner.hide()
           this.getExhanges()
         }, error => {
           this.showAlert('error', error)
           this.closeModal()
+          this.spinner.hide()
         })
   }
 
