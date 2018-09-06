@@ -16,6 +16,7 @@ export class AppComponent implements AfterContentChecked {
       this.sessionActive = true
     } else {
       this.sessionActive = false
+      this.closeNav()
     }
   }
 
