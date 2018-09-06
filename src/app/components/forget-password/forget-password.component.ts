@@ -33,6 +33,7 @@ export class ForgetPasswordComponent implements OnInit {
     this.spinner.show()
     if (this.forgetPasswordForm.invalid) {
       this.showAlert('error', 'Debes ingresar valores válidos')
+      this.spinner.hide()
       return
     }
 

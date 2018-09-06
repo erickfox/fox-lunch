@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
     this.spinner.show()
     if (this.loginForm.invalid) {
       this.showAlert('error', 'Debes ingresar valores válidos')
+      this.spinner.hide()
       return
     }
 

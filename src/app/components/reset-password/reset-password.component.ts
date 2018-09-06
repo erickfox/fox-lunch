@@ -43,6 +43,7 @@ export class ResetPasswordComponent implements OnInit {
     this.spinner.show()
     if (this.resetPasswordForm.invalid) {
       this.showAlert('error', 'Debes ingresar valores válidos')
+      this.spinner.hide()
       return
     }
 
