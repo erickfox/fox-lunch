@@ -52,11 +52,11 @@ export class LoginComponent implements OnInit {
       .pipe()
       .subscribe(
         data => {
+          this.spinner.hide()
           if (data.firstLogin) {
             this.router.navigate(['/reset-password'])
           } else {
             this.showAlert('success', 'Bienvenido :)')
-            this.spinner.hide()
             this.router.navigate([this.returnUrl])
           }
         },
