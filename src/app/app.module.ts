@@ -1,85 +1,46 @@
 // Dependencies
-import { BrowserModule } from '@angular/platform-browser'
-import { NgModule } from '@angular/core'
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router'
+import { RouterModule, Routes } from '@angular/router';
 
 // Components
-import { AppComponent } from './app.component'
-import { LoginComponent } from './components/login/login.component'
-import { ForgetPasswordComponent } from './components/forget-password/forget-password.component'
-import { ResetPasswordComponent } from './components/reset-password/reset-password.component'
-import { HomeComponent } from './components/home/home.component'
-import { MenuComponent } from './components/menu/menu.component'
-import { ProfileComponent } from './components/profile/profile.component'
-import { ProfilePurchaseComponent } from './components/profile-purchase/profile-purchase.component'
-import { ProfileSalesComponent } from './components/profile-sales/profile-sales.component'
-import { TicketsSaleComponent } from './components/tickets-sale/tickets-sale.component'
-import { ExchangeComponent } from './components/exchanges/exchange.component'
+import { AppComponent } from './components/main/app.component';
+import { HeaderComponent } from './components/header/header.component';
+import { LoginComponent } from './components/login/login.component';
+import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { HomeComponent } from './components/home/home.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ProfilePurchaseComponent } from './components/profile-purchase/profile-purchase.component';
+import { ProfileSalesComponent } from './components/profile-sales/profile-sales.component';
+import { TicketsSaleComponent } from './components/tickets-sale/tickets-sale.component';
+import { ExchangeComponent } from './components/exchanges/exchange.component';
 
 // Providers
-import { JwtInterceptor, ErrorInterceptor } from './helpers'
-import { AuthGuard } from './guards'
-import { AuthenticationService, ExchangeService, MenuService, PurchaseService, SaleService, UserService } from './services'
+import { JwtInterceptor, ErrorInterceptor } from './helpers';
+import { AuthGuard } from './guards';
+import { AuthenticationService, ExchangeService, MenuService, PurchaseService, SaleService, UserService } from './services';
 
 // Libraries
-import { NotifierModule } from 'angular-notifier'
-import { QRCodeModule } from 'angularx-qrcode'
-import { NgxSpinnerModule } from 'ngx-spinner'
+import { NotifierModule } from 'angular-notifier';
+import { QRCodeModule } from 'angularx-qrcode';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 const appRoutes: Routes = [
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'reset-password',
-    component: ResetPasswordComponent
-  },
-  {
-    path: 'forget-password',
-    component: ForgetPasswordComponent
-  },
-  {
-    path: '',
-    component: HomeComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'menu',
-    component: MenuComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'exchanges',
-    component: ExchangeComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'profile',
-    component: ProfileComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'profile-purchase',
-    component: ProfilePurchaseComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'profile-sales',
-    component: ProfileSalesComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'ticket-sale',
-    component: TicketsSaleComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: '**',
-    redirectTo: ''
-  }
+  { path: 'login', component: LoginComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: 'forget-password', component: ForgetPasswordComponent },
+  { path: '', component: HomeComponent,canActivate: [AuthGuard] },
+  { path: 'menu', component: MenuComponent,canActivate: [AuthGuard] },
+  { path: 'exchanges', component: ExchangeComponent,canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent,canActivate: [AuthGuard] },
+  { path: 'profile-purchase', component: ProfilePurchaseComponent,canActivate: [AuthGuard] },
+  { path: 'profile-sales', component: ProfileSalesComponent,canActivate: [AuthGuard] },
+  { path: 'ticket-sale', component: TicketsSaleComponent,canActivate: [AuthGuard] },
+  { path: '**', redirectTo: '' }
 ]
 
 @NgModule({
@@ -94,7 +55,8 @@ const appRoutes: Routes = [
     ProfilePurchaseComponent,
     ProfileSalesComponent,
     TicketsSaleComponent,
-    ExchangeComponent
+    ExchangeComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

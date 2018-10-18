@@ -1,5 +1,5 @@
 <!-- As a heading -->
-<nav class="navbar py-1 fixed-top bg_orange" *ngIf="sessionActive">
+<nav class="navbar py-1 fixed-top bg_orange">
   <span routerLink="" class="navbar-text text-white font-roboto font-weight-bold letspc-5">
     Inicio
   </span>
@@ -21,7 +21,3 @@
   <a (click)="closeNav()" routerLink="profile" class="font-roboto font-gray font-weight-bold">Perfil</a>
   <a (click)="closeNav()" routerLink="/login" class="font-roboto font-gray font-weight-bold">Cerrar sesión</a>
 </div>
-
-<router-outlet></router-outlet>
-<notifier-container></notifier-container>
-<ngx-spinner></ngx-spinner>
