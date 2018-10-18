@@ -47,6 +47,8 @@ export class MenuComponent implements OnInit {
 
     if (month < 10) {
       parseMonth = '0' + month
+    } else {
+      parseMonth = '' + month
     }
 
     return typeDate.getFullYear() + '-' + parseMonth + '-' + typeDate.getDate()
